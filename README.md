@@ -6,14 +6,3 @@
 
   <img width="361" height="318" alt="image" src="https://github.com/user-attachments/assets/b90c9d69-218c-4f44-89dc-22cd3ec12389" />
 
-
-
-Задача 2 Реализовать функцию analyzieString, которая на вход принимаетстроку и возвращает следующий объект:
-
-• letters: количество букв
-
-• digits: количество цифр
-
-• spaces: количество пробелов
-
-• other: остальные символы
