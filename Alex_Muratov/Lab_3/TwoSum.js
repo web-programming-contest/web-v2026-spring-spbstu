@@ -15,6 +15,14 @@ function TwoSum(arr,sum) {
     return pairs;
 }
 
-arr = [1,9,1];
-sum = 10;
-console.log(TwoSum(arr,sum));
+const tests = [
+    [[2, 7, 1, 8, 11, 15], 9,],
+    [[-1, -2, -3, -4, -5], -8,],
+    [[0, 4, 3, 0], 0,],
+    [[1, 9, 1, 9], 10,],
+    [[5], 5]
+];
+
+tests.forEach(([arr, sum]) => {
+    console.log(TwoSum(arr, sum));
+})
