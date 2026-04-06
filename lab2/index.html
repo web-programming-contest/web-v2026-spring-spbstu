@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>lab2 - RGB to HEX</title>
+</head>
+<body>
+    <h2>RGB → HEX конвертер</h2>
+    <p>Результаты в консоли (F12 → Console)</p>
+
+    <script>
+        function rgbToHex(rgb) {
+            const match = rgb.match(/\d+/g);
+            
+            if (!match || match.length < 3) {
+                return 'Ошибка: неверный формат';
+            }
+            
+            const r = parseInt(match[0]).toString(16).padStart(2, '0');
+            const g = parseInt(match[1]).toString(16).padStart(2, '0');
+            const b = parseInt(match[2]).toString(16).padStart(2, '0');
+            
+            return '#' + r + g + b;
+        }
+
+        console.log('Результаты конвертации RGB в HEX:');
+        console.log(rgbToHex("rgb(255,0,0)"));     // #ff0000
+        console.log(rgbToHex("rgb(0,255,0)"));     // #00ff00
+        console.log(rgbToHex("rgb(0,0,255)"));     // #0000ff
+        console.log(rgbToHex("rgb(255,255,0)"));   // #ffff00
+        console.log(rgbToHex("rgb(0,0,0)"));       // #000000
+        console.log(rgbToHex("rgb(255,255,255)")); // #ffffff
+    </script>
+</body>
+</html>
