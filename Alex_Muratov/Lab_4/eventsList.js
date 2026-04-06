@@ -6,13 +6,16 @@ const newEventsList = [];
 
 document.addEventListener("DOMContentLoaded", () => {
     if (!localStorage.getItem("EventsList") || localStorage.getItem("EventsList") !== "undefined"){
-        eventsListFiller(20,newEventsList)
+        eventsListFiller(20,newEventsList);
         localStorage.setItem("EventsList",JSON.stringify(newEventsList));
     }
+
 })
 
+
+
 const parsedList = JSON.parse(localStorage.getItem("EventsList"))
-export const restoredEvents = parsedList.map((data)=>new Event(data.id,data.title,data.participants,new Date(data.date)));
+const restoredEvents = parsedList.map((data)=>new Event(data.id,data.title,data.participants,new Date(data.date)));
 
 export function parseDateToString(date) {
     console.log(typeof date);

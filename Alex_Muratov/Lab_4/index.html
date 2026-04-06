@@ -5,6 +5,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="EventsStyle.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="ModalWindow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap&subset=cyrillic" rel="stylesheet">
 
     <script type="module" src="eventsListFiller.js"> </script>
@@ -20,6 +22,65 @@
     </div>
     <div class="events-container">
         <div class="event-card"> </div>
+    </div>
+
+
+    <div id="participant-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить участника</h3>
+                <span onclick="closeModal(this)" class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addParticipantForm">
+                    <div class="form-group">
+                        <label for="participantFirstName">Имя участника:</label>
+                        <input type="text" id="participantFirstName" name="participantFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="participantSecondName">Email:</label>
+                        <input type="email" id="participantSecondName" name="participantSecondName">
+                    </div>
+                    <div class="form-actions">
+                        <button onclick="closeModal(this)" type="button" class="cancel-btn">Отмена</button>
+                        <button onclick="addParticipant()" type="button" class="submit-btn">Добавить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить участника</h3>
+                <span onclick="closeModal(this)" class="close-btn">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Название мероприятия:</label>
+                        <input type="text" id="eventTitle" name="eventTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventId">ID:</label>
+                        <input type="text" id="eventId" name="eventId">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Дата:</label>
+                        <input type="date" id="eventDate" name="eventDate">
+                    </div>
+
+                    <div class="form-actions">
+                        <button onclick="closeModal(this)" type="button" class="cancel-btn">Отмена</button>
+                        <button onclick="addEvent()" type="button" class="submit-btn">Добавить</button>
+                    </div>
+                </form>
+            </div>
+            <div class="message-container">
+                <span class="message-popup" id="messageSpan"> </span>
+            </div>
+        </div>
     </div>
 
 </body>
