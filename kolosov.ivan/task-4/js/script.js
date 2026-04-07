@@ -1,4 +1,4 @@
-const usersJson = JSON.parse(localStorage.getItem('users')) || [];
+const usersJson = JSON.parse(localStorage.getItem('users') || []);
 let users;
 try {
     users = usersJson.map(u => {
@@ -62,7 +62,7 @@ function addUser(userID, userName) {
 }
 
 function deleteUser(index) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
         setTimeout(() => {
             users.splice(index, 1);
             localStorage.setItem('users', JSON.stringify(users));
@@ -109,8 +109,9 @@ document.getElementById('addUser').addEventListener('click', (event) => {
     const name = userName.value;
     userID.value = '';
     userName.value = '';
-    if (typeof users.find(user => user.id === id) === 'undefined') {
-        addUser(id, name).then(newUser => {   
+
+    if (typeof users.findIndex(user => user.id === id) === -1) {
+        addUser(id, name).then( () => {   
             renderUsers();
             event.target.disabled = false;
         }).catch(error => {
@@ -128,17 +129,16 @@ document.querySelector('.users').addEventListener('click', (event) => {
     const user = event.target.closest('.user');
     if (!user) return;
 
+    const userID = Number.parseInt(user.id);
+    const userIndex = users.findIndex(user => user.id === userID);
+
     if (event.target.matches('.delete-user-btn')) {
         event.target.disabled = true;
-        const userID = Number.parseInt(user.id);
-        const userIndex = users.findIndex(user => user.id === userID);
         deleteUser(userIndex).then(() => {
             renderUsers();
         });
     } else if(event.target.matches('.add-friend-btn')) {
         event.target.disabled = true;
-        const userID = Number.parseInt(user.id);
-        const userIndex = users.findIndex(user => user.id === userID);
         const input = event.target.parentElement.querySelector('input');
         input.disabled = true;
         const friendID = Number.parseInt(input.value);
@@ -152,8 +152,6 @@ document.querySelector('.users').addEventListener('click', (event) => {
         input.value = '';
     } else if(event.target.matches('.delete-friend-btn')) {
         event.target.disabled = true;
-        const userID = Number.parseInt(user.id);
-        const userIndex = users.findIndex(user => user.id === userID);
         const input = event.target.parentElement.querySelector('input');
         input.disabled = true;
         const friendID = Number.parseInt(input.value);

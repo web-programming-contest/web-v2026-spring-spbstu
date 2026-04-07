@@ -39,7 +39,7 @@ class User {
         if (typeof friendID != "number"|| Number.isNaN(friendID)) {
             throw new Error("friendID must be a number");
         }
-        else if (this.friends.indexOf(friendID) !== -1) {
+        else if (this.friends.indexOf(friendID) === -1) {
             throw new Error("User doesn't have a friend with such ID");
         }
         this.friends.splice(this.friends.indexOf(friendID), 1);
