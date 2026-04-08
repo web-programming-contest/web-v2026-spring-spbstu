@@ -1,0 +1,111 @@
+:root{
+  --text: #1b51bc;
+  --header-sz: 45px;
+  --error: red;
+  --scrollbar-display: block;
+}
+@media (max-width: 480px){
+  :root{
+    --header-sz: 30px;
+  }
+  .container{
+    flex-direction: column;
+  }
+}
+.container{
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+.container > div{
+  flex: 0 1 auto;
+  width: 50%;
+  padding: 10px;
+  height: 200px;
+}
+
+form{
+  height: 100%;
+}
+form .field{
+  width: 100%;
+}
+.card{
+    padding: 5px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.card > div{
+    width: 100%;
+}
+.card *{
+    color: black;
+}
+.card-body{
+    overflow: auto;
+}
+.result{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.result .card{
+    overflow: auto;
+    /* height: 100%; */
+}
+.result .card p{
+  margin: 0px
+}
+.result .section-header{
+  margin: 0px
+}
+.result *::-webkit-scrollbar{
+  width: 5px;
+}
+
+.examples-list{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+.card-header {
+    border-bottom: 1px solid black;
+    width: fit-content;
+    padding: 5px 0px;
+}
+
+li{
+  height: 2em;
+  display: inline;
+}
+.best-subsequence {
+    color: green;
+    font-weight: bold;
+}
+.section-header{
+  margin-bottom: 15px;
+}
+.section-header *{
+    font-size: var(--header-sz);
+}
+
+.msg-helper{
+    display: none;
+    color: var(--error);
+    font-size: 10px;
+}
+body *::-webkit-scrollbar {
+  background: transparent;
+  height: 5px;
+}
+body *::-webkit-scrollbar-track {
+  background: #fffffff0;
+}
+body *::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #938f8f;
+}
