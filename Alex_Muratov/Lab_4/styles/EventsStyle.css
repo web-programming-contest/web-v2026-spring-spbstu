@@ -1,27 +1,17 @@
 body{
     background-color: #F1D5A8;
-    position: relative;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     font-family: "Open Sans", sans-serif;
 }
 
-.logo{
-    position: fixed;
-    top: 0;
-    left: 100px;
-}
-
-.fa-minus {
-    user-select: none;
-    color: gray;
-    transition: transform 0.2s ease;
-}
-
-.fa-minus:hover {
-    color: #FF860C;
-    cursor: pointer;
-    transform: scale(1.5);
+header{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10%;
+    height: 100px;
+    width: 100%;
 }
 
 .events-container{
@@ -33,6 +23,7 @@ body{
 
 .event-card{
     width: calc((100% - 40px)/3);
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     gap:30px;
@@ -57,8 +48,8 @@ body{
 
 .title{
     font-size: 18px;
-
 }
+
 
 .event-card-head{
     margin-top: 20px;
@@ -92,7 +83,6 @@ body{
 }
 
 .participants-container::-webkit-scrollbar {
-
     height: 6px;
 }
 
@@ -102,8 +92,12 @@ body{
 }
 
 .participants-container::-webkit-scrollbar-thumb{
-    background: #A49964;
+    background: #edc690;
     border-radius: 40px;
+}
+
+.participants-container::-webkit-scrollbar-thumb:hover{
+    background-color: #A49964 ;
 }
 
 .participants-section{
@@ -165,10 +159,24 @@ body{
     background: #EDE8C9FF;
 }
 
-.delete-event-btn {
+.create-event-button:hover i{
+    color: #FF860C;
+    transform: scale(1.1) rotate(180deg);
+}
+
+.fa-plus{
+    user-select: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 50px;
+    color: gray;
+    transition: transform 0.4s ease;
+}
+
+.cross-btn{
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     width: 32px;
     height: 32px;
     border-radius: 50%;
@@ -182,50 +190,35 @@ body{
     z-index: 10;
 }
 
-.delete-event-btn i {
+.cross-btn i {
     font-size: 18px;
     color: #A49964;
     transition: all 0.2s ease;
     pointer-events: none;
 }
 
-.delete-event-btn:hover {
+.cross-btn:hover {
     background: #f44336;
     border-color: #f44336;
     transform: scale(1.05);
 }
 
-.delete-event-btn:hover i {
+
+.cross-btn:hover i {
     color: white;
     transform: rotate(180deg);
 }
 
-.delete-event-btn:active {
-    transform: scale(0.95);
-}
-
-.fa-plus{
+.fa-minus {
     user-select: none;
-    cursor: pointer;
-    width: 100%;
-    font-size: 50px;
     color: gray;
     transition: transform 0.2s ease;
-
 }
 
-.fa-plus:hover{
+.fa-minus:hover {
     color: #FF860C;
-    transform: scale(1.1);
-
-}
-
-.title{
-    display: flex;
-    justify-content: center;
-    padding: 8px;
-    border-radius: 20px;
-    border: #DBD4C2 solid 2px;
+    cursor: pointer;
+    transform: scale(1.5);
 }
 
 .small-button{

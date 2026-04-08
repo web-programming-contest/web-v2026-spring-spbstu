@@ -17,7 +17,10 @@
 
 </head>
 <body>
-    <img class="logo" src="Logo.svg" alt="HO! Events. Plan Better, Stress Less">
+    <header>
+        <img class="logo" src="Logo.svg" alt="HO! Events. Plan Better, Stress Less">
+    </header>
+
     <div class="events-container">
         <div class="event-card"> </div>
     </div>
@@ -27,21 +30,27 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h3>Добавить участника</h3>
-                <span onclick="closeModal(this)" class="close-btn">&times;</span>
+                <button class="cross-btn" onclick="closeModal(this)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
             <div class="modal-body">
                 <form id="addParticipantForm">
                     <div class="form-group">
-                        <label for="participantFirstName">Имя участника:</label>
+                        <label for="participantFirstName">Имя:</label>
                         <input type="text" id="participantFirstName" name="participantFirstName" required>
                     </div>
                     <div class="form-group">
-                        <label for="participantSecondName">Email:</label>
+                        <label for="participantSecondName">Фамилия:</label>
                         <input type="email" id="participantSecondName" name="participantSecondName">
                     </div>
+
                     <div class="form-actions">
                         <button onclick="closeModal(this)" type="button" class="cancel-btn">Отмена</button>
                         <button onclick="addParticipant()" type="button" class="submit-btn">Добавить</button>
+                    </div>
+                    <div class="message-container">
+                        <span class="message-popup message-span" id="messagePartSpan"> </span>
                     </div>
                 </form>
             </div>
@@ -51,8 +60,11 @@
     <div id="event-modal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>Добавить участника</h3>
-                <span onclick="closeModal(this)" class="close-btn">&times;</span>
+                <h3>Добавить мероприятие</h3>
+                <button class="cross-btn" onclick="closeModal(this)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
             </div>
             <div class="modal-body">
                 <form id="addEventForm">
@@ -73,10 +85,10 @@
                         <button onclick="closeModal(this)" type="button" class="cancel-btn">Отмена</button>
                         <button onclick="addEvent()" type="button" class="submit-btn">Добавить</button>
                     </div>
+                    <div class="message-container">
+                        <span class="message-popup message-span" id="messageEventSpan"> </span>
+                    </div>
                 </form>
-            </div>
-            <div class="message-container">
-                <span class="message-popup" id="messageSpan"> </span>
             </div>
         </div>
     </div>

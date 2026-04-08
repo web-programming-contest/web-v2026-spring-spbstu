@@ -1,5 +1,6 @@
 "use strict";
-import {getList, renderEventsCard, setList} from "./index.js";
+import {getList, renderEventsCard, setList, setMessage} from "./index.js";
+import {participantValidation} from "./participantsValidation.js";
 
 function addParticipant() {
     const form = document.getElementById('addParticipantForm');
@@ -12,11 +13,15 @@ function addParticipant() {
     getList()
         .then(res => {
             const event = res.find(event => event.id === window.currentCardId);
-
-            event.addParticipant(newParticipant);
-            renderEventsCard(res);
-
-            return setList(res);
+            const validationResult =  participantValidation(firstName, secondName, res, event);
+            if (!validationResult.correct){
+                setMessage(validationResult.message,"messagePartSpan",validationResult.color);
+            }
+            else {
+                event.addParticipant(newParticipant);
+                renderEventsCard(res);
+                return setList(res);
+            }
         })
         .then(res => console.log(res))
         .catch(error => console.log(error));

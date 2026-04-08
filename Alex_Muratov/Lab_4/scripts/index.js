@@ -21,6 +21,24 @@ export function setList(list){
     })
 }
 
+export function setMessage(message,element,color) {
+    const span = document.getElementById(element);
+    span.style.display = 'block';
+    span.style.background = color;
+    span.innerText = message;
+
+    setTimeout(() => {
+        span.classList.add('show');
+
+    }, 10)
+
+    setTimeout(()=>{
+        span.classList.remove('show');
+        span.style.display = "none";
+
+    },2000)
+}
+
 function showModal(button) {
     const modal = document.getElementById("participant-modal");
     const cardId = +(button.closest(".event-card").id);
@@ -65,7 +83,7 @@ export function renderEventsCard(events){
 
         return(
             `<div class="event-card" id="${event.id}">
-        <button class="delete-event-btn" onclick="deleteEvent(this)">
+        <button class="cross-btn" onclick="deleteEvent(this)">
             <i class="fa-solid fa-xmark"></i>
         </button>
         <div class="event-card-head">
