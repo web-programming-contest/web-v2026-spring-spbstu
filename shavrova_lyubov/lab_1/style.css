@@ -1,0 +1,43 @@
+/* Основной контейнер для карточек */
+.cards-container {
+    display: flex;           /* Горизонтальное расположение */
+    gap: 20px;              /* Отступ между карточками 20px */
+    padding: 20px;          /* Отступы вокруг всех карточек */
+    justify-content: center; /* Центрируем карточки по горизонтали */
+    flex-wrap: wrap;        /* Адаптивность: на маленьких экранах переносим */
+}
+
+/* Стиль каждой карточки */
+.product-card {
+    padding: 10px;          /* Внутренние отступы карточки 10px */
+    border: 1px solid #ddd; /* Лёгкая рамка для визуального выделения */
+    border-radius: 8px;     /* Закруглённые углы */
+    width: 200px;           /* Фиксированная ширина карточки */
+    background-color: #fff; /* Белый фон */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Лёгкая тень */
+}
+
+/* Стиль изображения */
+.product-image {
+    width: 200px;           /* Фиксированная ширина */
+    height: 150px;          /* Фиксированная высота */
+    object-fit: cover;      /* Обрезаем изображение, сохраняя пропорции */
+    display: block;         /* Убираем лишние отступы */
+    margin-bottom: 10px;    /* Отступ снизу от картинки */
+}
+
+/* Стиль заголовка */
+.product-title {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 10px 0;     /* Отступ снизу 10px */
+}
+
+/* Стиль описания */
+.product-description {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin: 0;              /* Убираем отступы */
+    line-height: 1.4;       /* Улучшаем читаемость */
+}
