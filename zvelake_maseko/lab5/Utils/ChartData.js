@@ -7,7 +7,7 @@ function prepareChartData(transactions) {
         }
         const group = grouped.get(dateKey);
         group.total += transaction.amount;
-        if (transaction.status === "PENDING" /* PaymentStatus.PENDING */) {
+        if (transaction.status === "PENDING") {
             group.pending += transaction.amount;
         }
     });
@@ -20,5 +20,3 @@ function prepareChartData(transactions) {
         .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 }
 export { prepareChartData };
-// Использование для Recharts:
-//const chartData = prepareChartData(transactions);
