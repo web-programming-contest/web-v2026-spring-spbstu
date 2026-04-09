@@ -18,7 +18,7 @@ export function eventsValidation(idField, titleField, dateField, events) {
     }
 
     result.correct = true;
-    result.message = "Все поля валидны";
+    result.message = "Событие успешно добавлено";
     result.color = "green";
 
     return result;

@@ -18,6 +18,7 @@ function addParticipant() {
                 setMessage(validationResult.message,"messagePartSpan",validationResult.color);
             }
             else {
+                setMessage(validationResult.message, "messagePartSpan",validationResult.color);
                 event.addParticipant(newParticipant);
                 renderEventsCard(res);
                 return setList(res);
