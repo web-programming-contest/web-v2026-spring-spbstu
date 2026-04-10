@@ -3,9 +3,8 @@ import TransactionModel from "../Models/TransactionModel.js";
 import Alert from "./Alert";
 
 export default function CreateTransaction({
-    prevSection,
+    account,
     setCurrentSection, 
-    setPrevSection,
     setTransactionsList
 }){
     const [name, setName] = useState('');
@@ -19,27 +18,37 @@ export default function CreateTransaction({
     const [transactionType, setTransactionType] = useState('income');
     const id = crypto.randomUUID();
 
-    
+    let success = false;
     const save = function(e){
         e.preventDefault();
-        setTransactionsList(prev => {
-            const newTransaction = new TransactionModel(id, name, date, transactionType == 'income' ? amount : -amount, paymentMethod, paymentStatus);
-            return [...prev, newTransaction];
-        });
 
+        if(account.balance < amount && paymentStatus === 'PAID'){
+            setAlertMessage('У вас не достаточно средств. Сберегите денег');
+            setAlertType('error');
+            setShowAlert(true);
+            success = false;
+        } else {
+            setTransactionsList(prev => {
+                const newTransaction = new TransactionModel(id, name, date, transactionType == 'income' ? amount : -amount, paymentMethod, paymentStatus);
+                account.balance += paymentStatus === 'PAID' ? newTransaction.amount : 0;
+                account.transactionHistory.push(newTransaction);
+                return [...prev, newTransaction];
+            });
+
+            setAlertMessage('транзакция создана Успешно');
+            setAlertType('success');
+            setShowAlert(true);
+            success = true;
+        }
         setTimeout(()=>{
             setShowAlert(false);
-            setPrevSection(1);
-            setCurrentSection(0);
+            success && setCurrentSection(0);
         }, 10000);
-        setAlertMessage('транзакция создана Успешно');
-        setAlertType('success');
-        setShowAlert(true);
+        return;
     }
 
     const close = function(){
-        setPrevSection(1);
-        setCurrentSection(prevSection);
+        setCurrentSection(0);
     }
     
     return (<div className="transaction-create-section box">
@@ -49,8 +58,7 @@ export default function CreateTransaction({
         <div className="section">
             <div className="section-nav">
                 <ul className="section-nav-links">
-                    <li className="section-nav-links__item" onClick={()=>{setPrevSection(1);setCurrentSection(prevSection);}}>Назад</li>
-                    <li className="section-nav-links__item" onClick={()=>{setPrevSection(1);setCurrentSection(0)}}>На Главную</li>
+                    <li className="section-nav-links__item" onClick={()=>{setCurrentSection(0)}}>На Главную</li>
                 </ul>
             </div>
             {showAlert && <Alert message={alertMessage} type={alertType} setShowAlert={setShowAlert}/>}
@@ -99,10 +107,9 @@ export default function CreateTransaction({
                         </div>
                     </div>
                     <div className="spacer" style={{height: '20px'}}></div>
-                    {/* buttons */}
                     <div className="form-btns">
-                        <button className="save-btn" type="submit">Сохранить</button>
-                        <button className="cancel-btn" type="button" onClick={close}>Отменить</button>
+                        <button className="save-btn primary" type="submit">Сохранить</button>
+                        <button className="cancel-btn" type="button secondary" onClick={close}>Отменить</button>
                     </div>
                 </form>
             </div>
