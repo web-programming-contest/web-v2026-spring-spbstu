@@ -7,8 +7,8 @@ body {
 
 .board {
     display: grid;
-    grid-template-columns: repeat(8, 10vh); /* 8 колонок */
-    grid-template-rows: repeat(8, 10vh);    /* 8 строк */
+    grid-template-columns: repeat(8, 10vh);
+    grid-template-rows: repeat(8, 10vh);
 }
 
 .square.white {

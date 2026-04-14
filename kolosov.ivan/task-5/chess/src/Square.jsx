@@ -1,9 +1,14 @@
-function Square({ row, col }) {
-  const isLight = (row + col) % 2 === 0;
+import Piece from "./Piece.jsx"
 
-  return (
-    <div className={`square ${isLight ? 'white' : 'black'}`} />
-  );
+function Square({ row, col, pieceColour, pieceType}) {
+    const colour = (row + col) % 2 === 0 ? 'white' : 'black';
+    const hasPiece = pieceColour !== "none" && pieceType !== "none";
+
+    return (
+        <div className={`square ${colour}`} >
+            {hasPiece && <Piece key={`${row}-${col}`} colour={pieceColour} piece={pieceType}/>}
+        </div>
+    );
 }
 
 export default Square;
