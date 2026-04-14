@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ строки</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 400px;
+            padding: 8px;
+            background-color: #ffffff;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+            font-family: Arial, sans-serif;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            background-color: #0056ff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #417ffb;
+        }
+
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+        }
+
+        .result p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <textarea id="inputString" rows="5" placeholder="Введите строку для анализа..."></textarea>
+    <button onclick="analyze()">Анализировать</button>
+
+    <div id="result" class="result" style="display: none;">
+        <p>Буквы: <span id="letters">0</span></p>
+        <p>Цифры: <span id="digits">0</span></p>
+        <p>Пробелы: <span id="spaces">0</span></p>
+        <p>Остальные символы: <span id="other">0</span></p>
+    </div>
+</div>
+
+<script>
+    function analyzeString(str) {
+        let letters = 0;
+        let digits = 0;
+        let spaces = 0;
+        let other = 0;
+
+        for (let i = 0; i < str.length; i++) {
+            let char = str[i];
+
+            if (char >= '0' && char <= '9') {
+                digits++;
+            } else if (char === ' ') {
+                spaces++;
+            } else if ((char >= 'a' && char <= 'z') || (char >= 'A' && char <= 'Z')) {
+                letters++;
+            } else if (char.match(/[а-яё]/i) || char.match(/[А-ЯЁ]/)) {
+                letters++;
+            } else {
+                other++;
+            }
+        }
+
+        return {
+            letters: letters,
+            digits: digits,
+            spaces: spaces,
+            other: other
+        };
+    }
+
+    function analyze() {
+        let input = document.getElementById('inputString').value;
+        let result = analyzeString(input);
+
+        document.getElementById('letters').textContent = result.letters;
+        document.getElementById('digits').textContent = result.digits;
+        document.getElementById('spaces').textContent = result.spaces;
+        document.getElementById('other').textContent = result.other;
+        document.getElementById('result').style.display = 'block';
+    }
+</script>
+</body>
+</html>
