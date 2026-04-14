@@ -1,0 +1,20 @@
+body {
+    padding-top: 10vh;
+    background-color: #5c5957;
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 10vh); /* 8 колонок */
+    grid-template-rows: repeat(8, 10vh);    /* 8 строк */
+}
+
+.square.white {
+    background-color: #ebecd0;
+}
+
+.square.black {
+    background-color: #739552;
+}
