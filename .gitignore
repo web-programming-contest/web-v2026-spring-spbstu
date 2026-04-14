@@ -264,3 +264,8 @@ fabric.properties
 .vscode/sftp.json
 .vscode/tags
 .devcontainer/
+
+# venv and pycache
+
+andrew.mashin/project/backend/venv/
+andrew.mashin/project/backend/__pycache__
