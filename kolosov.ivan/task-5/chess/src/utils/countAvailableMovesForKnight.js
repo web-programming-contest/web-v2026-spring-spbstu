@@ -12,7 +12,6 @@ function countAvailableMovesForKnight(row, col, board) {
             continue;
         }
         if (board[move.row * 8 + move.col].pieceColour === knightColour) {
-            console.log('ALO BLYAT');
             continue;
         }
         availableMoves.push(move);

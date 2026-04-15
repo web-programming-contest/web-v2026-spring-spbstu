@@ -2,328 +2,392 @@
     {
         "pieceColour": "black",
         "pieceType": "rook",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "knight",
-        "possibleMoves": [{"row": 2, "col": 0}, {"row": 2, "col": 2}]
+        "possibleMoves": [{"row": 2, "col": 0}, {"row": 2, "col": 2}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "bishop",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "queen",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "king",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "bishop",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "knight",
-        "possibleMoves": [{"row": 2, "col": 5}, {"row": 2, "col": 7}]
+        "possibleMoves": [{"row": 2, "col": 5}, {"row": 2, "col": 7}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "rook",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
 
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 0}, {"row": 3, "col": 0}]
+        "possibleMoves": [{"row": 2, "col": 0}, {"row": 3, "col": 0}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 1}, {"row": 3, "col": 1}]
+        "possibleMoves": [{"row": 2, "col": 1}, {"row": 3, "col": 1}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 2}, {"row": 3, "col": 2}]
+        "possibleMoves": [{"row": 2, "col": 2}, {"row": 3, "col": 2}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 3}, {"row": 3, "col": 3}]
+        "possibleMoves": [{"row": 2, "col": 3}, {"row": 3, "col": 3}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 4}, {"row": 3, "col": 4}]
+        "possibleMoves": [{"row": 2, "col": 4}, {"row": 3, "col": 4}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 5}, {"row": 3, "col": 5}]
+        "possibleMoves": [{"row": 2, "col": 5}, {"row": 3, "col": 5}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 6}, {"row": 3, "col": 6}]
+        "possibleMoves": [{"row": 2, "col": 6}, {"row": 3, "col": 6}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "black",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 2, "col": 7}, {"row": 3, "col": 7}]
+        "possibleMoves": [{"row": 2, "col": 7}, {"row": 3, "col": 7}],
+        "moveNumber": 0
     },
     
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
-    },
-    
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
-    },
-    {
-        "pieceColour": "none",
-        "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "none",
         "pieceType": "none",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
     },
 
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 0}, {"row": 4, "col": 0}]
+        "possibleMoves": [{"row": 5, "col": 0}, {"row": 4, "col": 0}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 1}, {"row": 4, "col": 1}]
+        "possibleMoves": [{"row": 5, "col": 1}, {"row": 4, "col": 1}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 2}, {"row": 4, "col": 2}]
+        "possibleMoves": [{"row": 5, "col": 2}, {"row": 4, "col": 2}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 3}, {"row": 4, "col": 3}]
+        "possibleMoves": [{"row": 5, "col": 3}, {"row": 4, "col": 3}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 4}, {"row": 4, "col": 4}]
+        "possibleMoves": [{"row": 5, "col": 4}, {"row": 4, "col": 4}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 5}, {"row": 4, "col": 5}]
+        "possibleMoves": [{"row": 5, "col": 5}, {"row": 4, "col": 5}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 6}, {"row": 4, "col": 6}]
+        "possibleMoves": [{"row": 5, "col": 6}, {"row": 4, "col": 6}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "pawn",
-        "possibleMoves": [{"row": 5, "col": 7}, {"row": 4, "col": 7}]
+        "possibleMoves": [{"row": 5, "col": 7}, {"row": 4, "col": 7}],
+        "moveNumber": 0
     },
     
     {
         "pieceColour": "white",
         "pieceType": "rook",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "knight",
-        "possibleMoves": [{"row": 5, "col": 0}, {"row": 5, "col": 2}]
+        "possibleMoves": [{"row": 5, "col": 0}, {"row": 5, "col": 2}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "bishop",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "queen",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "king",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "bishop",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "knight",
-        "possibleMoves": [{"row": 5, "col": 5}, {"row": 5, "col": 7}]
+        "possibleMoves": [{"row": 5, "col": 5}, {"row": 5, "col": 7}],
+        "moveNumber": 0
     },
     {
         "pieceColour": "white",
         "pieceType": "rook",
-        "possibleMoves": []
+        "possibleMoves": [],
+        "moveNumber": 0
     }
 ]
