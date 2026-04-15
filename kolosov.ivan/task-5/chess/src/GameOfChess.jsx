@@ -3,7 +3,7 @@ import Board from './Board.jsx'
 import {useState} from 'react'
 import startingBoard from './Board.json'
 import findIsInAvailableMovesValue from './utils/findIsInAvailableMovesValue.js';
-import countAvaiableMovesForKnight from '.utils/countAvaiableMovesForKnight.js';
+import countAvaiableMovesForKnight from './utils/countAvailableMovesForKnight.js';
 
 function GameOfChess() {
     //const fenStr = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR";
@@ -24,20 +24,27 @@ function GameOfChess() {
             setAvailableMoves([]);
         }
         else if (findIsInAvailableMovesValue(row, col, availableMoves)){
-            const newBoard = [...board];
+            let newBoard = [...board];
             newBoard[row * 8 + col] = newBoard[selectedIndex];
             newBoard[selectedIndex] = { pieceColour: "none", pieceType: "none" };
+            for (let row = 0; row < 8; ++row) {
+                for (let col = 0; col < 8; ++col) {
+                    newBoard = countAvailableMoves(row, col, newBoard);
+                }
+            }
             setBoard(newBoard);
             setSelectedIndex(null);
-            setAvailableMoves(countAvaiableMoves(row, col, board));
+            setAvailableMoves([]);
         }
     }
 
-    function countAvaiableMoves(row, col) {
-        const pieceType = board[row * 8, col].pieceType;
+    function countAvailableMoves(row, col, board) {
+        const pieceType = board[row * 8 + col].pieceType;
         switch (pieceType) {
             case "knight":
                 return countAvaiableMovesForKnight(row, col, board);
+            default:
+                return board;
         }
     }
 }

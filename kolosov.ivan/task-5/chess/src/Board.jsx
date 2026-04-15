@@ -1,11 +1,8 @@
 import Square from './Square.jsx'
 
 function Board({board, onSquareClick, availableMoves}) {
-    
     const rows = Array(8).fill(null)
     const cols = Array(8).fill(null)
-
-    console.log(availableMoves);
 
     return (
         <div className = "board">
