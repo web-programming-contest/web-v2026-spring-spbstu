@@ -6,14 +6,16 @@ function Piece({colour, piece, cover}) {
     };
 
     const COVERS = {
-        atacked: "/covers/atacked.png", selected: "/covers/selected_1.png"
+        atacked: "/covers/atacked.png", selected: "/covers/selected.png"
     }
 
     const hasCover = cover !== "none";
+    const isDot = piece === "dot"
 
     return (
         <div>
-            <img src= {`${PIECES[colour][piece]}`} alt = {`${colour}-${piece}`} ></img>
+            {!isDot && <img src= {`${PIECES[colour][piece]}`} alt = {`${colour}-${piece}`} ></img>}
+            {isDot && <img src= {`${PIECES[colour][piece]}`} className="dot" alt = {`${colour}-${piece}`} ></img>}
             {hasCover && <img src= {`${COVERS[cover]}`} className = "cover" alt = {`$cover`} ></img>}
         </div>
     );

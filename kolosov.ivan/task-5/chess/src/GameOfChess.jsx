@@ -16,12 +16,12 @@ function GameOfChess() {
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [selectedPosition, setSelectedPosition] = useState(null);
     const [availableMoves, setAvailableMoves] = useState([]);
+    const [winner, setWinner] = useState("none");
 
     const currentTurn = moveNumber % 2 === 1 ? "white" : "black";
 
-    if (board.every(position => (position.pieceColour === currentTurn && position.possibleMoves.length === 0) || position.pieceColour !== currentTurn)) {
-        console.log("GAME OVER");
-    }
+
+    const isWinnerDecided = winner !== "none";
 
     function handleSquareClick(row, col) {
         let destinationIndex = row * 8 + col;
@@ -83,14 +83,19 @@ function GameOfChess() {
                         newBoard = countAvailableMoves(row, col, newBoard);
                     }
                 }
-                
-                console.log(newBoard);
 
                 setBoard(newBoard);
                 setMoveNumber(moveNumber + 1);
                 setSelectedPosition(null);
                 setSelectedIndex(null);
                 setAvailableMoves([]);
+
+                const nextTurn = currentTurn === "white" ? "black" : "white";
+                
+                if (board.every(position => (position.pieceColour === nextTurn && position.possibleMoves.length === 0) || position.pieceColour !== nextTurn)) {
+                    console.log("GAME OVER");
+                    setWinner(currentTurn);
+                }
             }
     }
 
@@ -117,7 +122,8 @@ function GameOfChess() {
 
     return (
       <div className="App">
-       <Board board = {board} onSquareClick={handleSquareClick} availableMoves={availableMoves} selectedIndex={selectedIndex}/>
+        <Board board = {board} onSquareClick={handleSquareClick} availableMoves={availableMoves} selectedIndex={selectedIndex}/>
+        {isWinnerDecided && <p>{winner}</p>}
       </div>
     );
 }
