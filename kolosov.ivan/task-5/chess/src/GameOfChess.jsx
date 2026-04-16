@@ -117,7 +117,7 @@ function GameOfChess() {
 
     return (
       <div className="App">
-       <Board board = {board} onSquareClick={handleSquareClick} availableMoves={availableMoves}/>
+       <Board board = {board} onSquareClick={handleSquareClick} availableMoves={availableMoves} selectedIndex={selectedIndex}/>
       </div>
     );
 }

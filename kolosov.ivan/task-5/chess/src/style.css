@@ -20,5 +20,11 @@ body {
 }
 
 img {
-    width: 100%;
+    position: absolute;
+    width: 75px;
+    height: 75px;
+}
+
+img.cover {
+    opacity: 0.3;
 }
