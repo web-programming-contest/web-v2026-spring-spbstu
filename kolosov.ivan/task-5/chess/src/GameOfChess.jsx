@@ -12,15 +12,16 @@ import countAvaiableMovesForKing from './utils/countAvailableMovesForKing.js';
 function GameOfChess() {
     const [board, setBoard] = useState(startingBoard);
     const [moveNumber, setMoveNumber] = useState(1); 
-    
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [selectedPosition, setSelectedPosition] = useState(null);
     const [availableMoves, setAvailableMoves] = useState([]);
 
+    const currentTurn = moveNumber % 2 === 1 ? "white" : "black";
+
     function handleSquareClick(row, col) {
         let destinationIndex = row * 8 + col;
         if (selectedPosition === null) {
-            if (board[destinationIndex].pieceType !== "none") {
+            if (board[destinationIndex].pieceColour === currentTurn) {
                 setSelectedPosition({row: row, col: col});
                 setSelectedIndex(destinationIndex);
                 setAvailableMoves(board[destinationIndex].possibleMoves);
