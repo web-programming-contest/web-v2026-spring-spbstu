@@ -3,8 +3,7 @@ import { useState } from 'react'
 import startingBoard from './Board.json'
 import findIsInAvailableMovesValue from './utils/findIsInAvailableMovesValue.js';
 import countAvaiableMovesForKnight from './utils/countAvailableMovesForKnight.js';
-import countAvaiableMovesForBishop from './utils/countAvailableMovesForBishop.js';
-import countAvaiableMovesForRook from './utils/countAvailableMovesForRook.js';
+import { countAvailableMovesForBishop, countAvailableMovesForRook } from './utils/countAvailableMoves.js';
 import countAvaiableMovesForQueen from './utils/countAvailableMovesForQueen.js';
 import countAvaiableMovesForPawn from './utils/countAvailableMovesForPawn.js';
 import countAvaiableMovesForKing from './utils/countAvailableMovesForKing.js';
@@ -112,8 +111,8 @@ function GameOfChess() {
 
         switch (pieceType) {
             case "knight": newBoard = countAvaiableMovesForKnight(row, col, board); break;
-            case "bishop": newBoard = countAvaiableMovesForBishop(row, col, board); break;
-            case "rook": newBoard = countAvaiableMovesForRook(row, col, board); break;
+            case "bishop": newBoard = countAvailableMovesForBishop(row, col, board); break;
+            case "rook": newBoard = countAvailableMovesForRook(row, col, board); break;
             case "queen": newBoard = countAvaiableMovesForQueen(row, col, board); break;
             case "pawn": newBoard = countAvaiableMovesForPawn(row, col, board, moveNumber); break;
             case "king": newBoard = countAvaiableMovesForKing(row, col, board); break;
