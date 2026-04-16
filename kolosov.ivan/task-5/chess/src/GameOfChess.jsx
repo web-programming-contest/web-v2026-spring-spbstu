@@ -40,14 +40,19 @@ function GameOfChess() {
             else if (findIsInAvailableMovesValue(row, col, availableMoves)){
                 let newBoard = [...board];
 
-                if (board[selectedIndex].pieceType === "pawn" &&
+                if (board[selectedIndex].pieceType === "pawn") {
+                    if (
                     selectedPosition.col !== col  && board[selectedPosition.row * 8 + col].pieceType === "pawn" &&
                     board[selectedPosition.row * 8 + col].pieceColour !== board[selectedIndex].pieceColour &&
                     board[destinationIndex].pieceType === "none") {
-                    newBoard[selectedPosition.row * 8 + col].pieceColour = "none";
-                    newBoard[selectedPosition.row * 8 + col].pieceType = "none";
-                    newBoard[selectedPosition.row * 8 + col].possibleMoves = [];
-                    newBoard[selectedPosition.row * 8 + col].moveNumber = moveNumber;
+                        newBoard[selectedPosition.row * 8 + col].pieceColour = "none";
+                        newBoard[selectedPosition.row * 8 + col].pieceType = "none";
+                        newBoard[selectedPosition.row * 8 + col].possibleMoves = [];
+                        newBoard[selectedPosition.row * 8 + col].moveNumber = moveNumber;
+                    }
+                    else if ((currentTurn === "white" && row === 0) || row === 7) {
+                        newBoard[selectedIndex].pieceType = "queen";
+                    }
                 }
                 
                 if (board[selectedIndex].pieceType === "king" && board[selectedIndex].moveNumber === 0 && selectedPosition.row === row) {
