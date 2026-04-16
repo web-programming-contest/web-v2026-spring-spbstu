@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная 3 — Пары с заданной суммой</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Поиск пар с заданной суммой</h1>
+  <div class="container">
+    <label for="arrInput">Массив чисел (через запятую):</label>
+    <input type="text" id="arrInput" placeholder="1, 2, 3, 4, 5, 6" value="1, 2, 3, 4, 5, 6">
+
+    <label for="sumInput">Целевая сумма:</label>
+    <input type="number" id="sumInput" placeholder="7" value="7">
+
+    <button onclick="findPairs()">Найти пары</button>
+    <p class="error" id="errorMsg"></p>
+
+    <div class="result-block" id="resultBlock">
+      <h3 id="resultTitle"></h3>
+      <ul class="pairs-list" id="pairsList"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
