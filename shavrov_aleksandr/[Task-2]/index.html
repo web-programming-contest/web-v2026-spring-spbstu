@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная 2 — Проверка скобок</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Проверка сбалансированности скобок</h1>
+  <div class="container">
+    <label for="inputStr">Введите строку:</label>
+    <input type="text" id="inputStr" placeholder="{[()]}" value="{[()]}">
+    <button onclick="checkBalance()">Проверить</button>
+    <div class="result" id="result"></div>
+
+    <div class="examples">
+      <h3>Примеры:</h3>
+      <div class="example-item">
+        <span>"{[()]}"</span>
+        <span class="badge true">true</span>
+      </div>
+      <div class="example-item">
+        <span>"[(])"</span>
+        <span class="badge false">false</span>
+      </div>
+      <div class="example-item">
+        <span>"{[]}"</span>
+        <span class="badge true">true</span>
+      </div>
+      <div class="example-item">
+        <span>"((("</span>
+        <span class="badge false">false</span>
+      </div>
+      <div class="example-item">
+        <span>""</span>
+        <span class="badge true">true</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
