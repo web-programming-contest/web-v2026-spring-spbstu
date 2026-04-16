@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная 4 — Управление автомобилями</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Управление автомобилями</h1>
+
+<!-- Загрузка -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+</div>
+
+<!-- Панель управления -->
+<div class="controls">
+  <h2>Добавить автомобиль</h2>
+  <div class="form-row">
+    <div class="form-group">
+      <label for="newMake">Марка</label>
+      <input type="text" id="newMake" placeholder="Toyota">
+    </div>
+    <div class="form-group">
+      <label for="newModel">Модель</label>
+      <input type="text" id="newModel" placeholder="Camry">
+    </div>
+    <button class="btn-add" onclick="handleAddCar()">Добавить автомобиль</button>
+  </div>
+
+  <hr>
+
+  <h2>Фильтрация</h2>
+  <div class="filter-row">
+    <div class="form-group">
+      <label for="filterMake">Фильтр по марке</label>
+      <select id="filterMake" onchange="applyFilters()">
+        <option value="">Все марки</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="filterOwner">Фильтр по владельцу</label>
+      <input type="text" id="filterOwner" placeholder="Имя владельца" oninput="applyFilters()">
+    </div>
+    <div class="form-group">
+      <label for="filterOwnerCount">Количество владельцев</label>
+      <select id="filterOwnerCount" onchange="applyFilters()">
+        <option value="">Любое</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3+">3+</option>
+      </select>
+    </div>
+    <button class="btn-reset" onclick="resetFilters()">Сбросить фильтры</button>
+  </div>
+
+  <div class="status" id="statusMsg"></div>
+</div>
+
+<!-- Карточки -->
+<div id="cardsContainer"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
