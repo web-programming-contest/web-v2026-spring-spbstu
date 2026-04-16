@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Лабораторная 3 — Пары с заданной суммой</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      margin-bottom: 24px;
+    }
+
+    .container {
+      background: #fff;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 560px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      margin-bottom: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background: #4a90e2;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #357abd;
+    }
+
+    .result-block {
+      margin-top: 20px;
+      display: none;
+    }
+
+    .result-block h3 {
+      margin-bottom: 10px;
+    }
+
+    .pairs-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .pairs-list li {
+      padding: 8px 12px;
+      background: #eaf4fb;
+      border: 1px solid #bee3f8;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      font-family: monospace;
+      font-size: 15px;
+    }
+
+    .no-pairs {
+      color: #888;
+      font-style: italic;
+    }
+
+    .error {
+      color: #c0392b;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Поиск пар с заданной суммой</h1>
+  <div class="container">
+    <label for="arrInput">Массив чисел (через запятую):</label>
+    <input type="text" id="arrInput" placeholder="1, 2, 3, 4, 5, 6" value="1, 2, 3, 4, 5, 6">
+
+    <label for="sumInput">Целевая сумма:</label>
+    <input type="number" id="sumInput" placeholder="7" value="7">
+
+    <button onclick="findPairs()">Найти пары</button>
+    <p class="error" id="errorMsg"></p>
+
+    <div class="result-block" id="resultBlock">
+      <h3 id="resultTitle"></h3>
+      <ul class="pairs-list" id="pairsList"></ul>
+    </div>
+  </div>
+
+  <script>
+    /**
+     * Возвращает все уникальные пары чисел из массива, сумма которых равна sum.
+     * Каждая пара возвращается один раз (без дублирования в обратном порядке).
+     * @param {number[]} arr - массив чисел
+     * @param {number} sum - целевая сумма
+     * @returns {Array<[number, number]>} массив пар
+     */
+    function findPairsWithSum(arr, sum) {
+      const seen = new Set();
+      const pairs = [];
+
+      for (const num of arr) {
+        const complement = sum - num;
+        if (seen.has(complement)) {
+          pairs.push([complement, num]);
+        }
+        seen.add(num);
+      }
+
+      return pairs;
+    }
+
+    function findPairs() {
+      const errorEl = document.getElementById('errorMsg');
+      errorEl.textContent = '';
+
+      const rawArr = document.getElementById('arrInput').value;
+      const sumVal = document.getElementById('sumInput').value;
+
+      const arr = rawArr.split(',').map(s => s.trim()).filter(s => s !== '').map(Number);
+      const sum = Number(sumVal);
+
+      if (arr.some(isNaN)) {
+        errorEl.textContent = 'Ошибка: массив должен содержать только числа.';
+        return;
+      }
+      if (isNaN(sum)) {
+        errorEl.textContent = 'Ошибка: введите числовую сумму.';
+        return;
+      }
+
+      const pairs = findPairsWithSum(arr, sum);
+
+      const resultBlock = document.getElementById('resultBlock');
+      const pairsList = document.getElementById('pairsList');
+      const resultTitle = document.getElementById('resultTitle');
+
+      resultBlock.style.display = 'block';
+      resultTitle.textContent = `Пары с суммой ${sum} (найдено: ${pairs.length}):`;
+      pairsList.innerHTML = '';
+
+      if (pairs.length === 0) {
+        pairsList.innerHTML = '<li class="no-pairs">Пары не найдены</li>';
+      } else {
+        for (const [a, b] of pairs) {
+          const li = document.createElement('li');
+          li.textContent = `(${a}, ${b})  →  ${a} + ${b} = ${sum}`;
+          pairsList.appendChild(li);
+        }
+      }
+    }
+
+    // Примеры в консоли
+    console.log('findPairsWithSum([1,2,3,4,5,6], 7) =>', findPairsWithSum([1,2,3,4,5,6], 7));
+    // [[1,6],[2,5],[3,4]]
+    console.log('findPairsWithSum([1,5,3,-2,4], 3) =>', findPairsWithSum([1,5,3,-2,4], 3));
+    // [[5,-2],[-1 не туда]]  → проверим
+  </script>
+</body>
+</html>
