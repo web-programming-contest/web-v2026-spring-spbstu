@@ -1,6 +1,6 @@
 import Board from './Board.jsx'
 import { useState } from 'react'
-import startingBoard from './Draw.json'
+import startingBoard from './Board.json'
 import findIsInAvailableMovesValue from './utils/findIsInAvailableMovesValue.js';
 import countAvaiableMovesForKnight from './utils/countAvailableMovesForKnight.js';
 import { countAvailableMovesForBishop, countAvailableMovesForRook } from './utils/countAvailableMoves.js';
