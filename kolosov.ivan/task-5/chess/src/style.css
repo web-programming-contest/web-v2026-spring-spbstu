@@ -1,0 +1,36 @@
+body {
+    padding-top: 5vh;
+    background-color: #5c5957;
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(8, 75px);
+    grid-template-rows: repeat(8, 75px);
+}
+
+.square.white {
+    background-color: #ebecd0;
+}
+
+.square.black {
+    background-color: #739552;
+}
+
+img {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    z-index: 3;
+}
+
+img.cover {
+    opacity: 0.3;
+    z-index: 2;
+}
+
+img.dot {
+    opacity: 0.3;
+}
