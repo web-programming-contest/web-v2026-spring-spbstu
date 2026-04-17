@@ -2,10 +2,10 @@ import { useState, useCallback } from 'react'
 import { geocodeCity, fetchWeather } from '../api/weather'
 
 export function useWeather() {
-  const [data, setData]         = useState(null)
+  const [data, setData] = useState(null)
   const [cityName, setCityName] = useState('')
-  const [loading, setLoading]   = useState(false)
-  const [error, setError]       = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   const search = useCallback(async (city) => {
     if (!city.trim()) return
