@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Горизонтальное меню с переключением</title>
+    <!-- Подключаем внешний файл стилей -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- СЕМАНТИЧЕСКИЙ КОНТЕЙНЕР НАВИГАЦИИ -->
+    <nav>
+        <ul>
+            <li><a href="#">Главная</a></li>
+            <li><a href="#" class="active">Услуги</a></li>
+            <li><a href="#">Портфолио</a></li>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <!-- ========== JAVASCRIPT ДЛЯ ПЕРЕКЛЮЧЕНИЯ АКТИВНОГО ПУНКТА ========== -->
+    <script>
+        (function() {
+            'use strict';
+
+            // 1. Получаем все ссылки внутри навигации
+            const navLinks = document.querySelectorAll('nav ul li a');
+
+            // 2. Функция, которая убирает класс 'active' у всех ссылок
+            function removeActiveClasses() {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                });
+            }
+
+            // 3. Навешиваем обработчик клика на каждую ссылку
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    // Предотвращаем переход по якорной ссылке (#)
+                    event.preventDefault();
+
+                    // Снимаем выделение со всех пунктов
+                    removeActiveClasses();
+
+                    // Добавляем класс 'active' к текущей нажатой ссылке
+                    this.classList.add('active');
+                });
+            });
+
+        })();
+    </script>
+
+</body>
+</html>
