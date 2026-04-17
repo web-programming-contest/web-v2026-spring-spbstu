@@ -1,0 +1,33 @@
+#parent {
+    display: grid;
+    grid-template-columns: 1fr; /*default*/
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    background-color: #e0e0e0;
+    padding: 20px;
+    border: 1px solid #1d1d91;
+    text-align: center;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 720px) {
+    #parent {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    #parent {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

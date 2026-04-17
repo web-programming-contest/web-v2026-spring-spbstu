@@ -1,0 +1,35 @@
+main {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.form-block {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+}
+
+.user {
+    background-color: #597BC0;
+    border-radius: 30px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+button {
+    border-radius: 10px;
+}
+
+input {
+    border-radius: 10px;
+}

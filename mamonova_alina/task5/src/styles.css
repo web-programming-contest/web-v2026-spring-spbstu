@@ -1,0 +1,54 @@
+:root {
+    --g-step: 4px;
+
+    --padding-md: calc(var(--g-step) * 3);
+    --padding-lg: calc(var(--g-step) * 4);
+    --padding-xl: calc(var(--g-step) * 5);
+
+    --margin-sm: calc(var(--g-step) * 2);
+    --margin-md: calc(var(--g-step) * 3);
+    --margin-lg: calc(var(--g-step) * 4);
+
+    --radius-sm: calc(var(--g-step) * 4);
+    --radius-md: calc(var(--g-step) * 5);
+
+    --color-bg-body: #2a5298;
+    --color-bg-app: rgba(0,0,0,0.2);
+    --color-bg-error: #a00000;
+    --color-text: white;
+    --color-text-error: #ffb3b3;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--color-bg-body);
+    color: var(--color-text);
+    padding: var(--padding-xl);
+}
+
+.app {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--color-bg-app);
+    padding: var(--padding-xl);
+    border-radius: var(--radius-md);
+}
+
+h1, h2 {
+    margin: var(--margin-md) 0 var(--margin-lg) 0;
+}
+
+.error-msg {
+    background: var(--color-bg-error);
+    color: var(--color-text-error);
+    padding: var(--padding-lg);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    margin: var(--margin-md) 0;
+}
