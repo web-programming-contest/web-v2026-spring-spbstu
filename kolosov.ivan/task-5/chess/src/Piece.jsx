@@ -14,9 +14,9 @@ function Piece({colour, piece, cover}) {
 
     return (
         <div>
-            {!isDot && <img src= {`${PIECES[colour][piece]}`} alt = {`${colour}-${piece}`} ></img>}
-            {isDot && <img src= {`${PIECES[colour][piece]}`} className="dot" alt = {`${colour}-${piece}`} ></img>}
-            {hasCover && <img src= {`${COVERS[cover]}`} className = "cover" alt = {`$cover`} ></img>}
+            {!isDot && <img src= {`${PIECES[colour][piece]}`} alt = {`${colour}-${piece}`} />}
+            {isDot && <img src= {`${PIECES[colour][piece]}`} className="dot" alt = {`${colour}-${piece}`} />}
+            {hasCover && <img src= {`${COVERS[cover]}`} className = "cover" alt = {`${cover}`} />}
         </div>
     );
 }

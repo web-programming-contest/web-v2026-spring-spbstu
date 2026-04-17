@@ -1,0 +1,391 @@
+[
+    {
+        "pieceColour": "black",
+        "pieceType": "king",
+        "possibleMoves": [],
+        "moveNumber": 1
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "white",
+        "pieceType": "queen",
+        "possibleMoves": [{"row": 2, "col": 1}, {"row": 0, "col": 1}],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },    
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "none",
+        "pieceType": "none",
+        "possibleMoves": [],
+        "moveNumber": 0
+    },
+    {
+        "pieceColour": "white",
+        "pieceType": "king",
+        "possibleMoves": [],
+        "moveNumber": 0
+    }
+]

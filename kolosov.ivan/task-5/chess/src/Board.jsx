@@ -8,7 +8,7 @@ function Board({board, onSquareClick, availableMoves, selectedIndex}) {
         <div className = "board">
           {rows.map((_, row) =>
             cols.map((_, col) => (
-              <Square key={`${row}-${col + 1}`} row={row} 
+              <Square key={`${row}-${col}`} row={row} 
               col={col} pieceColour={board[row * 8 + col].pieceColour} 
               pieceType={board[row * 8 + col].pieceType} onSquareClick={onSquareClick}  availableMoves={availableMoves} selectedIndex={selectedIndex}/>
             ))

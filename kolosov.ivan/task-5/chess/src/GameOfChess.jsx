@@ -1,6 +1,6 @@
 import Board from './Board.jsx'
 import { useState } from 'react'
-import startingBoard from './Board.json'
+import startingBoard from './Draw.json'
 import findIsInAvailableMovesValue from './utils/findIsInAvailableMovesValue.js';
 import countAvaiableMovesForKnight from './utils/countAvailableMovesForKnight.js';
 import { countAvailableMovesForBishop, countAvailableMovesForRook } from './utils/countAvailableMoves.js';
@@ -8,6 +8,7 @@ import countAvaiableMovesForQueen from './utils/countAvailableMovesForQueen.js';
 import countAvaiableMovesForPawn from './utils/countAvailableMovesForPawn.js';
 import countAvaiableMovesForKing from './utils/countAvailableMovesForKing.js';
 import filterMovesLeavingKingInCheck from './utils/filterMovesLeavingKingInCheck.js';
+import isSquareUnderAtack from './utils/isSquareUnderAtack.js';
 
 function GameOfChess() {
     const [board, setBoard] = useState(startingBoard);
@@ -96,9 +97,32 @@ function GameOfChess() {
 
                 const nextTurn = currentTurn === "white" ? "black" : "white";
                 
-                if (board.every(position => (position.pieceColour === nextTurn && position.possibleMoves.length === 0) || position.pieceColour !== nextTurn)) {
+                if (newBoard.every(position => (position.pieceColour === nextTurn && position.possibleMoves.length === 0) || position.pieceColour !== nextTurn)) {
+                    const kingIndex = newBoard.findIndex(
+                        position => position.pieceType === "king" && position.pieceColour === nextTurn
+                    );
+                    const kingRow = Math.floor(kingIndex / 8);
+                    const kingCol = kingIndex % 8;
+                    console.log(kingIndex);
+                    console.log(currentTurn);
+                    console.log(newBoard);
                     console.log("GAME OVER");
-                    setWinner(currentTurn);
+                    if (isSquareUnderAtack(kingRow, kingCol, currentTurn, newBoard)) {
+                        setWinner(currentTurn);
+                    }
+                    else {
+                        setWinner("draw");
+                    }
+                }
+                
+                let flag = true;
+                for (let position of newBoard) {
+                    if (position.pieceType !== "none" && position.pieceType !== "king") flag = false;
+                }
+
+                if (flag) {
+                    console.log("GAME OVER");
+                    setWinner("draw");
                 }
             }
     }

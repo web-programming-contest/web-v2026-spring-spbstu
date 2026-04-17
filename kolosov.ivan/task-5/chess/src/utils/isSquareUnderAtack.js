@@ -7,7 +7,7 @@ function isSquareUnderAtack(row, col, attackerColour, board) {
         ];
     const stepsForBishop = [ {row: -1, col: -1}, {row: -1, col: 1}, {row: 1, col: -1}, {row: 1, col: 1} ];
     const stepsForRook = [ {row: 0, col: -1}, {row: 0, col: 1}, {row: 1, col: 0}, {row: -1, col: 0} ];
-    const chekingForPawn = attackerColour === "white" ? [ {row: 1, col: 1}, {row: 1, col: -1}] : [ {row: -1, col: 1}, {row: -1, col: -1}];
+    const chekingForPawn = attackerColour === "white" ? [ {row: row + 1, col: col + 1}, {row: row + 1, col:col - 1}] : [ {row: row - 1, col: col + 1}, {row: row - 1, col: col - 1}];
     const chekingForKing = [
         {row: row + 1, col: col + 1}, {row: row - 1, col: col - 1},
         {row: row + 1, col: col - 1}, {row: row - 1, col: col + 1}, 
