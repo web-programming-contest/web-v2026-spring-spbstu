@@ -1,0 +1,42 @@
+:root {
+  --bg: white;
+  --text: black;
+}
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  color: var(--text);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.expand-controller {
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+  padding: 5px 0px;
+}
+.expand-controller i {
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+
+.collapse {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.collapse::-webkit-scrollbar {
+  display: none;
+}
+
+.collapse.expand {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.collapse.expand ~ .expand-controller i {
+  transform: rotate(180deg);
+}

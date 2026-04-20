@@ -1,0 +1,116 @@
+:root {
+  --bg: white;
+  --text: black;
+}
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  color: var(--text);
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.expand-controller {
+  font-weight: bold;
+  display: flex;
+  gap: 5px;
+  padding: 5px 0px;
+}
+.expand-controller i {
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+
+.collapse {
+  max-height: 200px;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.collapse::-webkit-scrollbar {
+  display: none;
+}
+
+.collapse.expand {
+  max-height: 500px;
+  overflow-y: auto;
+}
+.collapse.expand ~ .expand-controller i {
+  transform: rotate(180deg);
+}
+
+:root {
+  --card-bg: white;
+  --box-bg: white;
+  --box-border: #a19696;
+  --box-shadow: 0px 0px 5px #c8bebe;
+  --box-pad-h: 10px;
+  --box-pad-v: var(--box-pad-h);
+}
+
+.box {
+  background: var(--box-bg);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: var(--box-pad-v) var(--box-pad-h);
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0px;
+}
+
+@keyframes slide-in-v {
+  0% {
+    transform: translateY(var(--start-pos));
+  }
+  100% {
+    transform: translateY(var(--end-pos));
+  }
+}
+[class*=-section] {
+  padding: 10px;
+  border-radius: 10px;
+  width: 60%;
+  margin: auto;
+}
+
+.sub-sections, .sub-section {
+  width: 100%;
+}
+
+.section {
+  margin: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.section-info {
+  padding: 10px 0px;
+  width: fit-content;
+  border-bottom: 2px solid black;
+  overflow: hidden;
+}
+.section-info .section-title {
+  --start-pos: 100%;
+  --end-pos: 0%;
+  animation: slide-in-v 1s linear;
+  animation-fill-mode: forwards;
+}
+.section-title {
+  margin: 0px;
+}
+
+.account-info-section {
+  margin: 5px 0px;
+  width: 100%;
+}
