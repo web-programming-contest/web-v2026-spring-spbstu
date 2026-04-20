@@ -42,6 +42,7 @@ export default function GamePage() {
                     boardState={boardState}
                     updateBoard={updateBoard}
                     mode ={mode}
+                    winner ={winner}
                 />
             </div>
             <p className="mt-8 text-neutral-400 text-xs tracking-widest uppercase">

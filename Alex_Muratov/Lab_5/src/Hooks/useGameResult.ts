@@ -39,6 +39,7 @@ export const useGameResult = (gridSize: number): GameResultReturn => {
         setBoardState(newBoardState);
         setCurIndex(index);
         setIsCross(!isCross);
+
     }
 
     function resetBoard() {

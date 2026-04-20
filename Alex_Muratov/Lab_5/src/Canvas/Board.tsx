@@ -1,6 +1,6 @@
 import {useEffect, useRef, useState} from "react";
 import { drawCircle, drawCross, gridStroke } from "./canvasFunctions";
-import { CellValue } from "../Hooks/useGameResult";
+import {CellValue, GameStatus} from "../Hooks/useGameResult";
 
 interface BoardProps {
     gridSize: number;
@@ -8,9 +8,10 @@ interface BoardProps {
     boardState: CellValue[];
     updateBoard: (index: number) => void;
     mode: string;
+    winner: GameStatus;
 }
 
-export default function Board({ gridSize, width, boardState, updateBoard, mode}: BoardProps) {
+export default function Board({gridSize, width, boardState, updateBoard, mode ,winner}: BoardProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isCpuNext,setIsCpuNext] = useState<boolean>(false);
     const cellSize = width / gridSize;
@@ -35,7 +36,7 @@ export default function Board({ gridSize, width, boardState, updateBoard, mode}:
             }
         });
 
-        if (isCpuNext) {
+        if (isCpuNext && !winner) {
             const arr = [...boardState]
             const index = arr.indexOf(null);
             updateBoard(index);
