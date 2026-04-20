@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управление заказами</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <h3>Управление заказами</h3>
+            <input type="number" id="orderId" placeholder="ID заказа">
+            <select id="orderStatus">
+                <option value="новый">новый</option>
+                <option value="обрабатывается">обрабатывается</option>
+                <option value="отправлен">отправлен</option>
+                <option value="доставлен">доставлен</option>
+                <option value="отменен">отменен</option>
+            </select>
+            <button id="addOrderBtn">Добавить заказ</button>
+
+            <h3>Управление товарами</h3>
+            <select id="orderSelect"></select>
+            <input type="text" id="productName" placeholder="Название товара">
+            <input type="number" id="productPrice" placeholder="Цена">
+            <button id="addProductBtn">Добавить товар</button>
+            <button id="removeProductBtn">Удалить товар</button>
+
+            <h3>Фильтрация</h3>
+            <select id="filterStatus">
+                <option value="all">Все статусы</option>
+                <option value="новый">новый</option>
+                <option value="обрабатывается">обрабатывается</option>
+                <option value="отправлен">отправлен</option>
+                <option value="доставлен">доставлен</option>
+                <option value="отменен">отменен</option>
+            </select>
+            <input type="text" id="filterProduct" placeholder="Фильтр по товару">
+            <div class="filter-row">
+                <input type="text" id="filterMinPrice" placeholder="Мин. цена" class="filter-input">
+                <input type="text" id="filterMaxPrice" placeholder="Макс. цена" class="filter-input">
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h2>Список заказов</h2>
+            <div id="ordersContainer"></div>
+        </div>
+    </div>
+
+    <!-- Шаблон карточки заказа -->
+    <template id="orderCardTemplate">
+        <div class="order-card">
+            <div class="order-header">
+                <span class="order-id"></span>
+                <select class="status-select">
+                    <option value="новый">новый</option>
+                    <option value="обрабатывается">обрабатывается</option>
+                    <option value="отправлен">отправлен</option>
+                    <option value="доставлен">доставлен</option>
+                    <option value="отменен">отменен</option>
+                </select>
+                <button class="delete-order">Удалить</button>
+            </div>
+            <div class="order-items"></div>
+            <div class="order-total"></div>
+        </div>
+    </template>
+
+    <script src="script.js"></script>
+</body>
+</html>

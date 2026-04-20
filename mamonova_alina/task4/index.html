@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рестораны</title>
+    <link rel="stylesheet" href="page/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="page-title">Рестораны</h1>
+
+    <div class="restaurant-button-container">
+        <button id="openRestaurantModalBtn" class="btn btn-primary">Добавить ресторан</button>
+    </div>
+
+    <div id="app" class="cards"></div>
+
+    <div class="analytics-panel" id="analyticsRoot">
+        <h2 class="analytics-title">Аналитика и поиск</h2>
+        <div class="search-dish-area">
+            <input type="text" id="searchDishInput" placeholder="Название блюда">
+            <button class="btn btn-primary" id="searchDishBtn">Найти рестораны с блюдом</button>
+            <div id="searchResultDisplay" class="search-result-display"></div>
+        </div>
+        <div class="analytics-grid" id="analyticsContent">
+            <div class="analytics-card">Загрузка</div>
+        </div>
+    </div>
+</div>
+
+<div id="restaurantModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3>Новый ресторан</h3>
+        <form id="restaurantForm">
+            <input type="text" id="modalRestaurantName" placeholder="Название (до 30 симв.)" maxlength="30">
+            <div class="modal-buttons">
+                <button id="modalRestaurantCancel" type="button" class="btn">Отмена</button>
+                <button id="modalRestaurantSubmit" type="submit" class="btn btn-primary" disabled>Создать</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="dishModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h3>Новое блюдо</h3>
+        <form id="dishForm">
+            <input type="text" id="modalDishName" placeholder="Название (до 30 симв.)" maxlength="30">
+            <input type="number" id="modalDishPrice" placeholder="Цена (1–100000 ₽)" min="1" max="100000" step="1">
+            <div class="modal-buttons">
+                <button id="modalDishCancel" type="button" class="btn">Отмена</button>
+                <button id="modalDishSubmit" type="submit" class="btn btn-primary" disabled>Добавить</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

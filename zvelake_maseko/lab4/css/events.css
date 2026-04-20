@@ -1,0 +1,242 @@
+:root {
+  --grid-col-w: 150px;
+  --event-grid: repeat(auto-fill, minmax(var(--grid-col-w), 1fr));
+  --card-shadow: 0px 0px 5px grey;
+  --card-animation-name: transform;
+  --card-animation-duration: 0.3s;
+  --card-animation-func: linear;
+  --card-bg: white;
+  --card-pad-h: 5px;
+  --card-pad-v: 5px;
+  --card-h: 300px;
+  --card-body-h: 150px;
+  --txt-inp-h: 0.45em;
+  --box-bg: #e3e3e3;
+  --box-shadow: 0px 0px 5px #a39e9e;
+}
+
+:root {
+  --grid-col-w: 150px;
+  --text: black;
+  --err-color: red;
+  --ok-color: green;
+  --warn-color: yellow;
+  --btn-primary: #0c84ed;
+}
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+}
+
+body {
+  margin: 0px;
+  font-family: sans-serif;
+}
+
+.grid, .events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-col-w), 1fr));
+}
+
+section, .section {
+  margin: 0px 25px;
+}
+
+input[type=text] {
+  padding: var(--txt-inp-h);
+  border-radius: 5px;
+  border: 0px;
+  box-shadow: 0px 0px 3px grey;
+  font-size: 18px;
+}
+input[type=text]:focus {
+  outline: 2px solid var(--btn-primary);
+}
+
+.inp-btn {
+  display: flex;
+  gap: 5px;
+}
+
+.actions-panel {
+  padding: 3px;
+  width: 100%;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 5px;
+  padding: 8px 10px;
+}
+.quick-actions .action {
+  padding: 5px;
+  border-radius: 9px;
+  background: var(--btn-primary, #0c84ed);
+  color: white;
+}
+
+.events-grid {
+  grid-template-columns: var(--event-grid);
+  padding: 10px;
+  gap: 5px;
+}
+@media (max-width: 480px) {
+  .events-grid {
+    --event-grid: 1fr;
+  }
+}
+
+.event-card {
+  box-shadow: var(--card-shadow);
+  transition: var(--card-animation-name) var(--card-animation-duration) var(--card-animation-func);
+  padding: var(--card-pad-v) var(--card-pad-h);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.event-card__body {
+  height: var(--card-body-h);
+  overflow: hidden;
+}
+.event-card__footer {
+  bottom: 0px;
+}
+.event-card__footer .event-actions {
+  display: flex;
+  gap: 5px;
+}
+.event-card:hover {
+  transform: scale(1.015);
+}
+
+button {
+  border: 0px;
+  padding: 5px;
+  transition: transform 0.3s linear;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  background: var(--btn-primary);
+}
+button:active {
+  transform: scale(1.015);
+}
+button.delete-btn, button.cancel-btn {
+  background: var(--err-color);
+}
+button.edit-btn {
+  background: var(--warn-color);
+}
+button.submit-btn {
+  background: var(--btn-primary);
+  color: white;
+}
+
+.warn {
+  background: var(--warn-color);
+  color: black;
+}
+
+.danger {
+  background: var(--err-color);
+  color: white;
+}
+
+.form-container {
+  padding: 10px;
+  width: 90%;
+  margin: auto;
+}
+
+.edit-panel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.edit-panel > div {
+  width: 49%;
+}
+
+.preview-area {
+  padding: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+form button {
+  color: white;
+}
+
+.form-control-btns {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.organizers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.organizer-item {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+.organizer-item .organizer-item-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+}
+
+.box, .tabs-list-box {
+  background: var(--box-bg);
+  box-shadow: var(--box-shadow);
+}
+
+.tabs {
+  width: 100%;
+}
+.tabs-list-box {
+  padding: 10px;
+  padding-bottom: 0px;
+}
+.tabs-list {
+  margin: 0px;
+  list-style-type: none;
+  padding: 0px;
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+}
+
+.tab-item {
+  padding: 5px;
+}
+.tab-item.active {
+  border: 1px solid grey;
+  border-bottom: none;
+  background: #74e041;
+}

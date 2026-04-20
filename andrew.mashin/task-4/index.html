@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="js/recipe.js"></script>
+    <script type="text/javascript" src="js/recipe_functions.js"></script>
+    <script type="text/javascript" src="js/script_recipe.js" defer></script>
+    <title>Ingredients</title>
+</head>
+<body>
+    <main>
+        <div class="recipes-with-form">
+            <div class="recipes-block">
+                <h1>Рецепты</h1>
+
+                <div class="recipes"></div>
+            </div>
+
+            <div class="form-block">
+                <h1>Добавить новый рецепт</h1>
+
+                <div class="form">
+                    <label for="recipe-name">Название рецепта:</label>
+                    <input type="text" id="recipe-name" name="recipe-name" placeholder="Введите название рецепта">
+
+                    <label for="ingredients">Ингредиенты:</label>
+                    <input type="text" id="ingredients" name="ingredients" placeholder="Введите ингредиенты через запятую">
+
+                    <label for="steps">Шаги:</label>
+                    <input type="text" id="steps" name="steps" placeholder="Введите шаги через запятую">
+
+                    <button id="add-recipe-btn" type="button">Добавить рецепт</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

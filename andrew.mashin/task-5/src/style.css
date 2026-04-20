@@ -1,0 +1,82 @@
+body {
+    -webkit-tap-highlight-color: transparent;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #0A0A0A;
+}
+
+
+
+/* Весь блок FAQ */
+.block-faq {
+    background-color: #0A0A0A;
+    color: white;
+}
+
+.block-faq h1 {
+    font-size: 50px;
+    margin: 0;
+    padding: 50px 0;
+    text-align: center;
+}
+
+
+
+/* Блок вопроса и ответа */
+.question-answer-block {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 70%;
+    background-color: #0F1110;
+    border: 2px #151515 solid;
+    border-radius: 15px;
+    padding: 20px 50px;
+    margin-bottom: 50px;
+}
+
+
+
+/* Элемент блок вопроса и ответа */
+.question-answer {
+    border-bottom: 1px #2C2C2E solid;
+    padding: 30px 0;
+}
+
+.question-answer p {
+    margin: 0;
+    font-size: 18px;
+}
+
+.question-answer:hover {
+    cursor: pointer;
+}
+
+.question-answer:last-child {
+    border: none;
+}
+
+
+
+/* Вопрос */
+.question {
+    display: flex;
+    justify-content: space-between;
+}
+
+.question svg {
+    transition: ease 0.3s;
+    color: #A09EAB;
+}
+
+.question svg.open {
+    transform: rotate(180deg);
+}
+
+
+
+/* Ответ */
+.answer p {
+    color: #8A8892;
+    margin-top: 25px;
+}

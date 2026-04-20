@@ -1,0 +1,353 @@
+:root {
+    --g-step: 4px;
+
+    --margin-xs: calc(var(--g-step) * 2);
+    --margin-sm: calc(var(--g-step) * 3);
+    --margin-md: calc(var(--g-step) * 5);
+    --margin-lg: calc(var(--g-step) * 7);
+
+    --padding-xs: calc(var(--g-step) * 2);
+    --padding-sm: calc(var(--g-step) * 3);
+    --padding-md: calc(var(--g-step) * 5);
+    --padding-lg: calc(var(--g-step) * 7);
+
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-md: 16px;
+    --font-size-lg: 20px;
+    --font-size-xxl: 32px;
+
+    --font-bold: 600;
+
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-2xl: 12px;
+
+    --color-bg-page: #e9ecef;
+    --color-bg-card: #ffffff;
+    --color-bg-hover: #f8f9fa;
+    --color-text-primary: #212529;
+    --color-text-secondary: #6c757d;
+    --color-border: #ced4da;
+
+    --color-primary: #007bff;
+    --color-primary-hover: #0069d9;
+    --color-danger: #dc3545;
+    --color-danger-hover: #c82333;
+
+    --card-width: 300px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--color-bg-page);
+    color: var(--color-text-primary);
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: var(--font-size-sm);
+    line-height: 1.4;
+    padding: var(--padding-lg);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h1, h2, h3 {
+    font-weight: var(--font-bold);
+}
+
+.page-title {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-xxl);
+    margin-bottom: var(--margin-lg);
+    text-align: center;
+}
+
+.analytics-panel {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    margin: var(--margin-lg) 0;
+    padding: var(--padding-lg);
+}
+
+.analytics-grid {
+    display: grid;
+    gap: var(--margin-md);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: var(--margin-md);
+}
+
+.analytics-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    overflow-wrap: break-word;
+    padding: var(--padding-md);
+}
+
+.analytics-card h3 {
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-md);
+    margin-bottom: var(--margin-sm);
+    padding-bottom: var(--margin-xs);
+}
+
+.search-dish-area {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--margin-sm);
+    margin-top: var(--margin-md);
+}
+
+.search-dish-area input {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    flex: 2;
+    padding: var(--padding-xs) var(--padding-sm);
+}
+
+.cards {
+    display: grid;
+    gap: var(--margin-md);
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+    margin-top: var(--margin-lg);
+}
+
+.restaurant-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    height: 100%;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.restaurant-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background: var(--color-bg-card);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    overflow: hidden;
+    overflow-wrap: break-word;
+    padding: var(--padding-md);
+}
+
+.restaurant-name {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-bold);
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.menu-badge {
+    background: var(--color-bg-page);
+    border-radius: var(--radius-xl);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-bold);
+    padding: var(--padding-xs) var(--padding-sm);
+}
+
+.card-body {
+    padding: var(--padding-md);
+}
+
+.menu-title {
+    color: var(--color-text-primary);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-bold);
+    margin-bottom: var(--margin-sm);
+}
+
+.dish-list {
+    list-style: none;
+    margin-bottom: var(--margin-md);
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dish-item {
+    align-items: center;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--margin-xs);
+    padding: var(--padding-xs) var(--padding-sm);
+}
+
+.dish-info {
+    font-size: var(--font-size-sm);
+    overflow: hidden;
+    overflow-wrap: break-word;
+}
+
+.dish-price {
+    background: transparent;
+    border-radius: var(--radius-xl);
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-bold);
+    padding: 2px var(--padding-xs);
+}
+
+.btn {
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-bold);
+    padding: var(--padding-xs) var(--padding-md);
+    transition: opacity 0.2s;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+}
+
+.btn-primary {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--padding-sm) var(--padding-md);
+}
+
+.btn-primary:hover {
+    background: var(--color-primary-hover);
+}
+
+.btn-delete {
+    background: var(--color-danger);
+    color: white;
+}
+
+.btn-delete:hover {
+    background: var(--color-danger-hover);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--color-danger);
+    cursor: pointer;
+    font-size: var(--font-size-md);
+    padding: var(--padding-xs) var(--padding-xs);
+}
+
+.btn-icon:hover {
+    background: var(--color-bg-hover);
+}
+
+.card-actions {
+    display: flex;
+    gap: var(--margin-sm);
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+.empty-state {
+    color: var(--color-text-secondary);
+    font-style: italic;
+    padding: var(--padding-md) 0;
+    text-align: center;
+}
+
+.modal {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--radius-2xl);
+    max-width: 400px;
+    padding: var(--padding-lg);
+    position: relative;
+    width: 90%;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: var(--font-size-xxl);
+    position: absolute;
+    right: var(--margin-md);
+    top: var(--margin-sm);
+}
+
+.modal-content input,
+.modal-content select {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    margin: var(--margin-sm) 0;
+    padding: var(--padding-xs) var(--padding-sm);
+    width: 100%;
+}
+
+.modal-content button {
+    margin-top: var(--margin-xs);
+}
+
+.restaurant-button-container {
+    margin-bottom: var(--margin-md);
+    text-align: center;
+}
+
+.search-result-display {
+    font-weight: 500;
+    margin-top: var(--margin-xs);
+    width: 100%;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: var(--margin-sm);
+    justify-content: flex-end;
+    margin-top: var(--margin-md);
+}
+
+.empty-state-full {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--padding-lg);
+}
+
+.dish-actions {
+    align-items: center;
+    display: flex;
+    gap: var(--margin-xs);
+}
+
+.search-error {
+    color: var(--color-danger);
+}
