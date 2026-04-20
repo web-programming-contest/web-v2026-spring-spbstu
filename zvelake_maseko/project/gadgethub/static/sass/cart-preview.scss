@@ -1,0 +1,35 @@
+@use "./global-mixins.scss" as mixins;
+
+.cart-preview .products-list{
+    gap: 10px;
+
+    & .product{
+        grid-template-columns: 1fr 3fr;
+
+        & .image-container{
+            width: 150px;
+            height: 150px;
+            margin: auto;
+        }
+        & .product-info{
+            width: 80%;
+        }
+        & .product-actions{
+            width: 20%;
+            align-items: flex-end;
+            justify-content: space-between;
+            & button{
+                width: 30px;
+                height: 30px;
+                border-radius: 8px;
+                --button-bg: #f3f0f09f;
+                border: 1px solid grey;
+                padding: 0px;
+            }
+        }
+        
+        & .category{
+            --text: #13ad0b;
+        }
+    }
+}

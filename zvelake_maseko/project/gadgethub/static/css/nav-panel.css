@@ -1,0 +1,39 @@
+.nav-panel {
+  padding: 3px;
+  position: sticky;
+  top: 70px;
+  z-index: 1000;
+}
+.nav-panel ul, .nav-panel .nav-links {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.link-item {
+  border-radius: 8px;
+  padding: 3px;
+  width: fit-content;
+  height: 30px;
+}
+.link-item:not(.active) .bg {
+  opacity: 0;
+}
+.link-item:hover .bg {
+  opacity: 0.5;
+}
+.link-item.active {
+  --text: white;
+  border: none;
+}
+.link-item.active .bg {
+  opacity: 1;
+}
+.link-item .bg {
+  z-index: -1;
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  border-radius: inherit;
+}

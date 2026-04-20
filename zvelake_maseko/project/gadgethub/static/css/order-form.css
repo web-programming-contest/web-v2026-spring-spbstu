@@ -1,0 +1,95 @@
+.form {
+  padding: 10px 20px;
+  gap: 15px;
+}
+@media (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+  .form > * {
+    width: 100%;
+  }
+}
+.form > * {
+  margin-bottom: 20px;
+}
+.form-section {
+  box-shadow: 0px 0px 5px #e7d0d0;
+  padding: 20px;
+  border-radius: 10px;
+}
+.form-section-title {
+  align-items: center;
+}
+.form-section-title * {
+  font-weight: 500;
+}
+.form-section-title .icon {
+  color: #0080ff;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: 700;
+}
+
+input[type=text] {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid rgb(159, 153, 153);
+  width: 100%;
+  text-align: left;
+}
+input[type=text]:focus {
+  outline: 2px solid rgb(0, 115, 255);
+}
+
+.input-box {
+  border-radius: 8px;
+  padding: 5px;
+  border: 1px solid rgb(159, 153, 153);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.input-box i {
+  --text: rgb(187, 178, 178);
+}
+.input-box:focus {
+  outline: 2px solid rgb(0, 115, 255);
+}
+.input-box input[type=text] {
+  outline: none;
+  border: none;
+  padding: 5px;
+}
+.input-box input[type=text]:focus {
+  outline: none;
+}
+
+.divider {
+  width: 100%;
+  border: 1px solid rgb(227, 227, 227);
+}
+
+.order-summary {
+  margin-bottom: 10px;
+}
+
+.order-info .list-item {
+  justify-content: space-between;
+}
+
+.summary-item {
+  justify-content: space-between;
+  align-items: center;
+}
+
+button[type=submit] {
+  font-weight: 600;
+}

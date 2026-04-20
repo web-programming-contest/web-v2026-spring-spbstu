@@ -1,0 +1,45 @@
+@use "./global-mixins.scss" as mixins;
+
+:root{
+    --review-card-w: 300px;
+    --review-card-h: 100px;
+}
+
+.product-review-modal{
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+}
+.modal-content{
+    width: 90%;
+    height: 90%;
+    margin: auto;
+    padding: 5px;
+    overflow: auto;
+}
+
+.reviews-grid{
+    grid-template-columns: repeat(auto-fill, minmax(var(--review-card-w), 1fr));
+    gap: 10px;
+    
+    @include mixins.mobile{}
+}
+.review-card{
+    padding: 10px;
+    height: var(--review-card-h);
+    .avatar-image{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .review{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+}

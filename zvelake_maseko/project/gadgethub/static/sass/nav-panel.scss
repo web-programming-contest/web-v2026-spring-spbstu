@@ -1,0 +1,44 @@
+
+.nav-panel{
+    padding: 3px;
+    position: sticky;
+    top: 70px;
+    z-index: 1000;
+
+    ul, .nav-links{
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+    }
+}
+.link-item{
+    border-radius: 8px;
+    padding: 3px;
+    width: fit-content;
+    height: 30px;
+    
+    &:not(.active) .bg{
+        opacity: 0;
+    }
+    
+    &:hover .bg{
+        opacity: 0.5;
+    }
+
+    &.active{
+        --text: white;
+        border: none;
+        & .bg{
+            opacity: 1;
+        }
+    }
+    
+    & .bg{
+        z-index: -1;
+        left: 0px;
+        right: 0px;
+        top: 0px;
+        bottom: 0px;
+        border-radius: inherit;
+    }
+}
