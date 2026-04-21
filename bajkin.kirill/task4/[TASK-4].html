@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Библиотека книг</title>
+<style>
+    * {
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+    body {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 20px;
+    background: #f3f4f6;
+}
+    .controls {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+    .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+    .form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+    input, select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    width: 160px;
+}
+    button {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+    button:hover {
+    background: #2563eb;
+}
+    .delete-btn {
+    background: #ef4444;
+}
+    .delete-btn:hover {
+    background: #dc2626;
+}
+    .library-card {
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+    .library-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 12px;
+    margin-bottom: 20px;
+}
+    .library-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #111827;
+}
+    .book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+}
+    .book-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 14px;
+}
+    .book-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: #1f2937;
+}
+    .book-detail {
+    font-size: 14px;
+    color: #4b5563;
+    margin: 4px 0;
+}
+    .remove-book {
+    margin-top: 12px;
+    background: #ef4444;
+    width: 100%;
+    font-size: 13px;
+}
+    .empty-message {
+    color: #6b7280;
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+<h1 style="text-align: center;">Система управления библиотеками</h1>
+
+<div class="controls">
+    <div class="form-group">
+        <label>Название библиотеки</label>
+        <input type="text" id="newLibName" placeholder="Центральная">
+    </div>
+    <button id="addLibraryBtn">Добавить библиотеку</button>
+
+    <div class="form-group">
+        <label>Выбрать библиотеку</label>
+        <select id="librarySelect"></select>
+    </div>
+    <button id="removeLibraryBtn" class="delete-btn">Удалить библиотеку</button>
+</div>
+
+<div class="controls" style="background: #eef2ff;">
+    <div class="form-group">
+        <label>Название книги</label>
+        <input type="text" id="bookTitle" placeholder="Война и мир">
+    </div>
+    <div class="form-group">
+        <label>Автор</label>
+        <input type="text" id="bookAuthor" placeholder="Лев Толстой">
+    </div>
+    <div class="form-group">
+        <label>Год</label>
+        <input type="number" id="bookYear" placeholder="1869">
+    </div>
+    <div class="form-group">
+        <label>Жанр</label>
+        <input type="text" id="bookGenre" placeholder="Роман">
+    </div>
+    <button id="addBookBtn">Добавить книгу</button>
+</div>
+
+<div id="librariesContainer"></div>
+
+<script>
+    class Library {
+        constructor(name) {
+            this.name = name;
+            this.books = [];
+        }
+
+        addBook(book) {
+            this.books.push(book);
+        }
+
+        removeBook(title) {
+            this.books = this.books.filter(book => book.title !== title);
+        }
+
+        get booksCount() {
+            return this.books.length;
+        }
+    }
+
+    let libraries = [];
+
+    function groupBooksByGenre() {
+        const map = new Map();
+
+        for (let i = 0; i < libraries.length; i++) {
+            const lib = libraries[i];
+
+            for (let j = 0; j < lib.books.length; j++) {
+                const book = lib.books[j];
+                const genre = book.genre;
+
+                let booksArray;
+                if (map.has(genre)) {
+                    booksArray = map.get(genre);
+                } else {
+                    booksArray = [];
+                    map.set(genre, booksArray);
+                }
+
+                const bookWithLibrary = {
+                    title: book.title,
+                    author: book.author,
+                    year: book.year,
+                    genre: book.genre,
+                    libraryName: lib.name
+                };
+
+                booksArray.push(bookWithLibrary);
+            }
+        }
+
+        return map;
+    }
+
+    function getAllUniqueAuthors() {
+        const authorsSet = new Set();
+        for (const lib of libraries) {
+            for (const book of lib.books) {
+                authorsSet.add(book.author);
+            }
+        }
+        return Array.from(authorsSet);
+    }
+
+    function groupBooksByYear() {
+        const groups = {};
+
+        for (let i = 0; i < libraries.length; i++) {
+            const lib = libraries[i];
+
+            for (let j = 0; j < lib.books.length; j++) {
+                const book = lib.books[j];
+                const year = book.year;
+
+                if (groups[year] === undefined) {
+                    groups[year] = [];
+                }
+
+                const bookWithLibrary = {
+                    title: book.title,
+                    author: book.author,
+                    year: book.year,
+                    genre: book.genre,
+                    libraryName: lib.name
+                };
+
+                groups[year].push(bookWithLibrary);
+            }
+        }
+
+        return groups;
+    }
+
+    function getUniqueYears() {
+        const years = new Set();
+        for (const lib of libraries) {
+            for (const book of lib.books) {
+                years.add(book.year);
+            }
+        }
+        return Array.from(years).sort((a,b) => a-b);
+    }
+
+    function getBooksByAuthor(authorName) {
+        const result = [];
+
+        for (let i = 0; i < libraries.length; i++) {
+            for (let j = 0; j < libraries[i].books.length; j++) {
+                const book = libraries[i].books[j];
+
+                if (book.author === authorName) {
+                    result.push(book);
+                }
+            }
+        }
+
+        return result;
+    }
+
+    const STORAGE_KEY = 'libraries_data';
+
+    function saveToLocalStorage() {
+        const serialized = libraries.map(lib => ({
+            name: lib.name,
+            books: lib.books.map(book => ({ ...book }))
+        }));
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(serialized));
+    }
+
+    function loadFromLocalStorage() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return [];
+        try {
+            const parsed = JSON.parse(raw);
+            return parsed.map(item => {
+                const lib = new Library(item.name);
+                item.books.forEach(book => lib.addBook(book));
+                return lib;
+            });
+        } catch(e) {
+            return [];
+        }
+    }
+
+    function asyncAddBook(library, book) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                library.addBook(book);
+                resolve();
+            }, 300);
+        });
+    }
+
+    function asyncRemoveBook(library, title) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                library.removeBook(title);
+                resolve();
+            }, 300);
+        });
+    }
+
+    function asyncAddLibrary(libraryName) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const newLib = new Library(libraryName);
+                libraries.push(newLib);
+                resolve(newLib);
+            }, 300);
+        });
+    }
+
+    function asyncRemoveLibrary(libraryIndex) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                if (libraryIndex >= 0 && libraryIndex < libraries.length) {
+                    libraries.splice(libraryIndex, 1);
+                }
+                resolve();
+            }, 300);
+        });
+    }
+
+    function testFunctions42() {
+        console.log("========== РЕЗУЛЬТАТЫ ФУНКЦИЙ 4.2 ==========");
+
+        console.log("\n1. groupBooksByGenre() - группировка по жанру:");
+        const byGenre = groupBooksByGenre();
+        for (let [genre, books] of byGenre) {
+            console.log(`   Жанр "${genre}":`);
+            books.forEach(book => {
+                console.log(`     - ${book.title} (${book.author}, ${book.year}) [${book.libraryName}]`);
+            });
+        }
+
+        console.log("\n2. getAllUniqueAuthors() - уникальные авторы:");
+        console.log("   ", getAllUniqueAuthors());
+
+        console.log("\n3. groupBooksByYear() - группировка по году:");
+        const byYear = groupBooksByYear();
+        for (let year in byYear) {
+            console.log(`   Год ${year}:`);
+            byYear[year].forEach(book => {
+                console.log(`     - ${book.title} (${book.author}) [${book.libraryName}]`);
+            });
+        }
+
+        console.log("\n4. getUniqueYears() - уникальные года:");
+        console.log("   ", getUniqueYears());
+
+        console.log("\n5. getBooksByAuthor('Лев Николаевич Толстой') - книги Толстого:");
+        const tolstoyBooks = getBooksByAuthor("Лев Николаевич Толстой");
+        if (tolstoyBooks.length === 0) {
+            console.log("   Книги Толстого не найдены");
+        } else {
+            tolstoyBooks.forEach(book => {
+                console.log(`     - ${book.title} (${book.year}, ${book.genre})`);
+            });
+        }
+
+        console.log("\n================================================\n");
+    }
+
+    let currentSelectedLibIndex = 0;
+
+    function render() {
+        const selectEl = document.getElementById('librarySelect');
+        if (selectEl) {
+            selectEl.innerHTML = '';
+            libraries.forEach((lib, idx) => {
+                const option = document.createElement('option');
+                option.value = idx;
+                option.textContent = `${lib.name} (${lib.booksCount} книг)`;
+                if (idx === currentSelectedLibIndex) option.selected = true;
+                selectEl.appendChild(option);
+            });
+            if (libraries.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = '— нет библиотек —';
+                option.disabled = true;
+                selectEl.appendChild(option);
+                currentSelectedLibIndex = -1;
+            } else if (currentSelectedLibIndex >= libraries.length) {
+                currentSelectedLibIndex = libraries.length - 1;
+            }
+        }
+
+        const container = document.getElementById('librariesContainer');
+        if (!container) return;
+        container.innerHTML = '';
+
+        if (libraries.length === 0) {
+            container.innerHTML = '<div class="library-card"><div class="empty-message">Нет библиотек. Добавьте первую!</div></div>';
+            saveToLocalStorage();
+            testFunctions42();
+            return;
+        }
+
+        for (let i = 0; i < libraries.length; i++) {
+            const lib = libraries[i];
+
+            const libDiv = document.createElement('div');
+            libDiv.className = 'library-card';
+
+            const headerDiv = document.createElement('div');
+            headerDiv.className = 'library-header';
+            headerDiv.innerHTML = `
+                <span class="library-name">${lib.name}</span>
+                <span>Книг: ${lib.booksCount}</span>
+            `;
+            libDiv.appendChild(headerDiv);
+
+            const booksGrid = document.createElement('div');
+            booksGrid.className = 'book-grid';
+
+            if (lib.books.length === 0) {
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'empty-message';
+                emptyDiv.textContent = 'Нет книг';
+                booksGrid.appendChild(emptyDiv);
+            } else {
+                lib.books.forEach((book, bookIdx) => {
+                    const card = document.createElement('div');
+                    card.className = 'book-card';
+                    card.innerHTML = `
+                        <div class="book-title">${book.title}</div>
+                        <div class="book-detail">Автор: ${book.author}</div>
+                        <div class="book-detail">Год: ${book.year}</div>
+                        <div class="book-detail">Жанр: ${book.genre}</div>
+                        <button class="remove-book delete-btn" data-libindex="${i}" data-booktitle="${book.title}">Удалить</button>
+                    `;
+                    booksGrid.appendChild(card);
+                });
+            }
+            libDiv.appendChild(booksGrid);
+            container.appendChild(libDiv);
+        }
+
+        document.querySelectorAll('.remove-book').forEach(btn => {
+            btn.removeEventListener('click', handleRemoveBook);
+            btn.addEventListener('click', handleRemoveBook);
+        });
+
+        saveToLocalStorage();
+        testFunctions42();
+    }
+
+    async function handleRemoveBook(e) {
+        const btn = e.currentTarget;
+        const libIndex = parseInt(btn.dataset.libindex);
+        const bookTitle = btn.dataset.booktitle;
+        if (isNaN(libIndex) || !bookTitle) return;
+        const library = libraries[libIndex];
+        if (!library) return;
+        await asyncRemoveBook(library, bookTitle);
+        render();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        libraries = loadFromLocalStorage();
+        if (libraries.length > 0) currentSelectedLibIndex = 0;
+        render();
+
+        const addLibBtn = document.getElementById('addLibraryBtn');
+        const newLibInput = document.getElementById('newLibName');
+        addLibBtn.addEventListener('click', async () => {
+            const name = newLibInput.value.trim();
+            if (!name) {
+                alert("Введите название библиотеки");
+                return;
+            }
+            await asyncAddLibrary(name);
+            newLibInput.value = '';
+            currentSelectedLibIndex = libraries.length - 1;
+            render();
+        });
+
+        const removeLibBtn = document.getElementById('removeLibraryBtn');
+        removeLibBtn.addEventListener('click', async () => {
+            if (libraries.length === 0) {
+                alert("Нет библиотек для удаления");
+                return;
+            }
+            const select = document.getElementById('librarySelect');
+            const idx = parseInt(select.value);
+            if (isNaN(idx) || idx < 0 || idx >= libraries.length) {
+                alert("Выберите библиотеку");
+                return;
+            }
+            await asyncRemoveLibrary(idx);
+            if (libraries.length === 0) {
+                currentSelectedLibIndex = -1;
+            } else {
+                currentSelectedLibIndex = Math.min(idx, libraries.length - 1);
+            }
+            render();
+        });
+
+        const addBookBtn = document.getElementById('addBookBtn');
+        addBookBtn.addEventListener('click', async () => {
+            if (libraries.length === 0) {
+                alert("Сначала создайте библиотеку");
+                return;
+            }
+            const title = document.getElementById('bookTitle').value.trim();
+            const author = document.getElementById('bookAuthor').value.trim();
+            const year = parseInt(document.getElementById('bookYear').value);
+            const genre = document.getElementById('bookGenre').value.trim();
+
+            if (!title || !author || !genre || isNaN(year)) {
+                alert("Заполните все поля");
+                return;
+            }
+
+            const selectLib = document.getElementById('librarySelect');
+            const libIndex = parseInt(selectLib.value);
+            if (isNaN(libIndex) || libIndex < 0 || libIndex >= libraries.length) {
+                alert("Выберите библиотеку");
+                return;
+            }
+            const targetLib = libraries[libIndex];
+            const newBook = { title, author, year, genre };
+
+            await asyncAddBook(targetLib, newBook);
+            document.getElementById('bookTitle').value = '';
+            document.getElementById('bookAuthor').value = '';
+            document.getElementById('bookYear').value = '';
+            document.getElementById('bookGenre').value = '';
+            render();
+        });
+
+        const selectEl = document.getElementById('librarySelect');
+        selectEl.addEventListener('change', (e) => {
+            const newIdx = parseInt(e.target.value);
+            if (!isNaN(newIdx) && newIdx >= 0 && newIdx < libraries.length) {
+                currentSelectedLibIndex = newIdx;
+            }
+            render();
+        });
+    });
+</script>
+</body>
+</html>
