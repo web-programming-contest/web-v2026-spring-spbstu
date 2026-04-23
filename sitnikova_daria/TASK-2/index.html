@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<!-- Объявляем тип документа HTML5 -->
+<html lang="ru">
+<!-- Корневой элемент, язык страницы русский -->
+<head>
+    <meta charset="UTF-8">
+    <!-- Устанавливаем кодировку UTF-8 для корректного отображения любых символов -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Настройка вьюпорта для адаптивного масштабирования на мобильных устройствах -->
+    <title>Анализ строки: буквы (вкл. русские), цифры, пробелы и символы "other"</title>
+    <!-- Заголовок вкладки браузера -->
+    
+    <!-- Подключаем внешний CSS-файл со стилями -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <!-- Основная карточка-контейнер для всего содержимого -->
+        <h1>Анализатор строки</h1>
+
+        <div class="input-group">
+            <label>✏️ Введите текст для анализа
+            <!-- Поле ввода. Placeholder показывает пример -->
+            <textarea id="inputString" rows="4" placeholder="Пример: Привет, world! 123 🚀 test@example.com"></textarea>
+            </label>
+        </div>
+
+        <button id="analyzeBtn">
+            🔍 Проанализировать
+        </button>
+
+        <!-- Блок результатов-->
+        <div class="result-container">
+            <div style="font-weight: 600; margin-bottom: 8px;">📋 Результат анализа:</div>
+            <!-- Контейнер для карточек статистики (буквы, цифры, пробелы итд) -->
+            <div class="stats-grid" id="statsGrid"></div>
+            
+            <!-- Специальный блок для отображения самих "других" символов -->
+            <div class="other-chars-block">
+                <div class="other-header">🔹 Другие символы (other):</div>
+                <!-- Контейнер, куда JavaScript динамически вставляет либо строку с символами-->
+                <div class="other-chars-content" id="otherCharsContent"></div>
+                <div class="other-hint">* сюда попадают все символы, не являющиеся буквами (ни латиница, ни кириллица), не цифры и не пробелы</div>
+            </div>          
+        </div>
+        <div class="footer-note">
+            • Буквы: A–Z, a–z (латиница) и русские буквы (А–Я, а–я, Ё, ё)<br>
+            • Цифры: 0–9 <br>
+            • Пробелы: символ пробела ' '<br>
+            • Другие символы: все остальные символы (знаки препинания, эмодзи, табуляции и т.д.)
+        </div>
+    </div>
+
+    <script>
+        // ======================== ОСНОВНАЯ ФУНКЦИЯ analyzeString ========================
+        // Функция принимает строку и возвращает объект с:
+        // - letters: количество букв (латиница +  кириллица(рус.))
+        // - digits: количество цифр
+        // - spaces: количество пробелов ' '
+        // - otherCount: количество остальных символов
+        // - otherChars: строка, составленная из всех "других" символов (в порядке появления)
+        function analyzeString(str) {
+            // Обработка null / undefined: заменяем на пустую строку
+            if (str === null || str === undefined) {
+                str = '';
+            }
+            // Приводим к строковому типу (на случай, если передано число или другой тип)
+            const input = String(str);
+            
+            let letters = 0;           // счётчик букв (латиница + кириллица)
+            let digits = 0;            // счётчик цифр 0-9
+            let spaces = 0;            // счётчик пробелов ' '
+            let otherCharsArray = [];  // массив для накопления символов категории "other"
+            
+            // Перебираем каждый символ строки с помощью for...of
+            // Такой цикл корректно обрабатывает суррогатные пары (например, эмодзи)
+            for (const ch of input) {
+                // Проверка на латинские буквы (A-Z, a-z)
+                const isLatin = (ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z');
+                // Проверка на русские буквы
+                const isRussianLetter = (ch >= 'А' && ch <= 'Я') || (ch >= 'а' && ch <= 'я') || ch === 'Ё' || ch === 'ё';
+                
+                // Если символ — буква (латиница или кириллица)
+                if (isLatin || isRussianLetter) {
+                    letters++;
+                } 
+                // Иначе проверка на цифру (0-9)
+                else if (ch >= '0' && ch <= '9') {
+                    digits++;
+                }
+                // Иначе проверка на пробел (только символ ' ', не табуляция и не перевод строки)
+                else if (ch === ' ') {
+                    spaces++;
+                }
+                else {
+                    // Все остальные символы (знаки препинания, эмодзи, табуляции, переносы строк, спецсимволы и т.д.)
+                    otherCharsArray.push(ch);
+                }
+            }
+            
+            // Склеиваем массив в строку (без разделителей, просто символы подряд)
+            const otherCharsString = otherCharsArray.join('');
+            
+            // Возвращаем объект с результатами
+            return {
+                letters: letters,
+                digits: digits,
+                spaces: spaces,
+                otherCount: otherCharsArray.length,   // количество "других" символов
+                otherChars: otherCharsString          // строка, содержащая все эти символы
+            };
+        }
+        
+        // ======================== UI ЛОГИКА И ОТОБРАЖЕНИЕ ========================
+        // Получаем ссылки на DOM-элементы
+        const textarea = document.getElementById('inputString');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const statsGrid = document.getElementById('statsGrid');
+        const otherCharsContent = document.getElementById('otherCharsContent');
+        
+        // Функция для отображения всех результатов
+        function renderResults(stats) {
+            // 1. Очищаем сетку количественных карточек
+            statsGrid.innerHTML = '';
+            
+            // 2. Создаём карточки для букв, цифр, пробелов и количества "other"
+            const categories = [
+                { key: 'letters', label: 'Буквы (лат. + рус.)', colorClass: 'letters' },
+                { key: 'digits', label: 'Цифры (0-9)', colorClass: 'digits' },
+                { key: 'spaces', label: 'Пробелы', colorClass: 'spaces' },
+                { key: 'otherCount', label: 'Другие символы (кол-во)', colorClass: 'other' }
+            ];
+            
+            categories.forEach(cat => {
+                const value = stats[cat.key];
+                const card = document.createElement('div');
+                card.className = `stat-card ${cat.colorClass}`;
+                card.innerHTML = `
+                    <div class="stat-value">${value}</div>
+                    <div class="stat-label">${cat.label}</div>
+                `;
+                statsGrid.appendChild(card);
+            });
+            
+            // 3. Отображаем строку, содержащую ВСЕ символы "other"
+            const otherString = stats.otherChars;
+            if (otherString.length === 0) {
+                otherCharsContent.innerHTML = '<span class="empty-other">(нет других символов)</span>';
+            } else {
+                // Используем <pre> для сохранения форматирования (пробелы, табуляции, переносы строк)
+                otherCharsContent.innerHTML = `<pre class="other-pre">${escapeHtml(otherString)}</pre>`;
+            }
+        }
+        
+        // Вспомогательная функция для экранирования HTML-символов (чтобы безопасно показывать спецсимволы)
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if (m === '&') return '&amp;';
+                if (m === '<') return '&lt;';
+                if (m === '>') return '&gt;';
+                return m;
+            });
+        }
+        
+        // Обработчик нажатия на кнопку
+        function handleAnalysis() {
+            const rawText = textarea.value;   // берём текущий текст из поля ввода
+            const analysisResult = analyzeString(rawText);
+            renderResults(analysisResult);
+        }
+        
+        // Вешаем обработчик события "click" на кнопку
+        analyzeBtn.addEventListener('click', handleAnalysis);
+        
+        // Горячая клавиша Ctrl+Enter в текстовом поле для удобства
+        textarea.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();   // отменяем стандартный перевод строки
+                handleAnalysis();     // запускаем анализ
+            }
+        });
+        
+        // При полной загрузке DOM выполняем анализ текста (поле пустое → все счётчики = 0)
+        window.addEventListener('DOMContentLoaded', () => {
+            handleAnalysis();
+        });
+        
+        // Автоматическое изменение высоты textarea под содержимое (удобство)
+        function autoResizeTextarea() {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.min(textarea.scrollHeight, 250) + 'px';
+        }
+        textarea.addEventListener('input', autoResizeTextarea);
+        autoResizeTextarea();
+    </script>
+</body>
+</html>

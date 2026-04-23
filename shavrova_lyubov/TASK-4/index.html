@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Управление товарами</h1>
+        
+        <div class="form-section">
+            <h3>Добавить товар</h3>
+            <input type="number" id="productId" placeholder="ID товара">
+            <input type="text" id="productName" placeholder="Название">
+            <input type="number" id="productPrice" placeholder="Цена">
+            <button onclick="addProduct()">Добавить товар</button>
+        </div>
+        
+        <div class="form-section">
+            <h3>Добавить категорию товару</h3>
+            <input type="number" id="categoryProductId" placeholder="ID товара">
+            <input type="text" id="categoryName" placeholder="Название категории">
+            <button onclick="addCategoryToProduct()">Добавить категорию</button>
+        </div>
+        
+        <div class="form-section">
+            <h3>Удалить категорию у товара</h3>
+            <input type="number" id="removeCategoryProductId" placeholder="ID товара">
+            <input type="text" id="removeCategoryName" placeholder="Название категории">
+            <button onclick="removeCategoryFromProduct()">Удалить категорию</button>
+        </div>
+        
+        <div class="form-section">
+            <h3>Удалить товар</h3>
+            <input type="number" id="deleteProductId" placeholder="ID товара">
+            <button onclick="deleteProduct()">Удалить товар</button>
+        </div>
+        
+        <div class="button-group">
+            <button onclick="showByCategories()">Группировать по категориям</button>
+            <button onclick="showUniqueCategories()">Уникальные категории</button>
+            <button onclick="showByPriceRanges()">Группировать по ценам</button>
+        </div>
+        
+        <div class="form-section">
+            <h3>Фильтр по цене</h3>
+            <input type="number" id="minPrice" placeholder="Минимальная цена">
+            <button onclick="filterByPrice()">Показать товары дороже</button>
+        </div>
+        
+        <div id="productsList"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

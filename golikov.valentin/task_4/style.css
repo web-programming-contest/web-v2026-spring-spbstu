@@ -1,0 +1,115 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f0f0f0;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    width: 300px;
+    height: 650px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.sidebar h3 {
+    margin: 15px 0 10px 0;
+}
+
+.filter-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.filter-input {
+    flex: 1;
+    margin: 0;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+.main-content {
+    flex: 1;
+}
+
+.order-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    gap: 15px;  
+}
+
+.order-id {
+    font-weight: bold;
+    font-size: 18px;
+    flex: 2;  
+}
+
+.status-select {
+    flex: 1;
+    padding: 5px;
+    margin: 0;
+}
+
+.delete-order {
+    flex: 0;
+    width: auto;
+    padding: 5px 10px;
+    margin: 0;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.order-total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+

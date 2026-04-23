@@ -1,0 +1,28 @@
+:root {
+  --grid-col-w: 150px;
+  --text: black;
+  --err-color: red;
+  --ok-color: green;
+  --warn-color: yellow;
+  --btn-primary: #0c84ed;
+}
+
+* {
+  box-sizing: border-box;
+  position: relative;
+  color: var(--text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0px;
+}
+
+body {
+  margin: 0px;
+  font-family: sans-serif;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--grid-col-w), 1fr));
+}

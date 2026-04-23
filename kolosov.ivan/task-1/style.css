@@ -1,0 +1,11 @@
+.status[data-status="pending"]::before {
+    content: "⏳"
+}
+
+.status[data-status="done"]::before {
+    content: "✔️"
+}
+
+.status[data-status="canceled"]::before {
+    content: "❌"
+}

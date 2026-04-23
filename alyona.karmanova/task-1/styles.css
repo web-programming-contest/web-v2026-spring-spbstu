@@ -1,0 +1,11 @@
+.price {
+    font-style: italic;
+}
+
+.product-name, .category-name {
+    font-weight: bold;
+}
+
+.products {
+  list-style: disc;
+}

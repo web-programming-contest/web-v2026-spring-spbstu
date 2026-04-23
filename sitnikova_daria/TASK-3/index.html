@@ -1,0 +1,35 @@
+<!DOCTYPE html>                                 
+<html lang="ru">                                
+<head>                                          
+    <meta charset="UTF-8">                      
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Удаление дубликатов</title>          <!-- Заголовок вкладки браузера -->
+    <link rel="stylesheet" href="style.css">    <!-- Подключение внешнего файла стилей -->
+</head>
+<body>                                          
+    <div class="container">                     <!-- Основной контейнер для центрирования -->
+        <h1>Удаление дубликатов</h1>            <!-- Заголовок страницы -->
+
+        <!-- Группа для поля ввода массива -->
+        <div class="input-group">
+            <label for="array-input">Введите массив чисел:</label> <!-- Подпись к полю ввода -->
+            <!-- Поле ввода с примером формата в placeholder -->
+            <input type="text" id="array-input" placeholder="например: 1, 2, 2, 5, 6, 7, 5">
+            <!-- Блок для вывода сообщений об ошибках валидации -->
+            <div id="error-message" class="error-message"></div>
+            <!-- Текст подсказки о допустимых символах -->
+            <small class="hint">Разрешены только цифры, запятые и пробелы.</small>
+        </div>
+
+        <!-- Отображение исходного массива после успешного парсинга -->
+        <p>Исходный массив: <span id="input-array"></span></p>
+
+        <!-- Кнопка для запуска удаления дубликатов -->
+        <button id="process-btn">Удалить дубликаты</button>
+
+        <!-- Отображение результата -->
+        <p>Результат: <span id="result-array"></span></p>
+    </div>
+    <script src="script.js"></script>           <!-- Подключение внешнего JavaScript -->
+</body>
+</html>

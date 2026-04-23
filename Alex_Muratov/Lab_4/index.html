@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="styles/EventsStyle.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="styles/ModalWindow.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script type="module" src="scripts/eventsListFiller.js"> </script>
+    <script type="module" src="scripts/eventsList.js"> </script>
+    <script type="module" src="scripts/event.js"> </script>
+    <script type="module" src="scripts/index.js"> </script>
+    <script type="module" src="scripts/participantsUI.js"></script>
+    <script type="module" src="scripts/eventsUI.js"></script>
+
+</head>
+<body>
+    <header>
+        <img class="logo" src="Logo.svg" alt="HO! Events. Plan Better, Stress Less">
+    </header>
+
+    <div class="events-container">
+        <div class="event-card"> </div>
+    </div>
+
+
+    <div id="participant-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить участника</h3>
+                <button class="cross-btn" onclick="closeModal(this)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addParticipantForm">
+                    <div class="form-group">
+                        <label for="participantFirstName">Имя:</label>
+                        <input type="text" id="participantFirstName" name="participantFirstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="participantSecondName">Фамилия:</label>
+                        <input type="email" id="participantSecondName" name="participantSecondName">
+                    </div>
+
+                    <div class="form-actions">
+                        <button onclick="closeModal(this)" type="button" class="cancel-btn">Отмена</button>
+                        <button onclick="addParticipant()" type="button" class="submit-btn">Добавить</button>
+                    </div>
+                    <div class="message-container">
+                        <span class="message-popup message-span" id="messagePartSpan"> </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Добавить мероприятие</h3>
+                <button class="cross-btn" onclick="closeModal(this)">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <form id="addEventForm">
+                    <div class="form-group">
+                        <label for="eventTitle">Название мероприятия:</label>
+                        <input type="text" id="eventTitle" name="eventTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventId">ID:</label>
+                        <input type="text" id="eventId" name="eventId">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Дата:</label>
+                        <input type="date" id="eventDate" name="eventDate">
+                    </div>
+
+                    <div class="form-actions">
+                        <button onclick="closeModal(this)" type="button" class="cancel-btn">Отмена</button>
+                        <button onclick="addEvent()" type="button" class="submit-btn">Добавить</button>
+                    </div>
+                    <div class="message-container">
+                        <span class="message-popup message-span" id="messageEventSpan"> </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

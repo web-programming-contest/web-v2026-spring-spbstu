@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+main {
+    display: flex;
+    gap: 30px;
+}
+
+.cars {
+    margin-top: 10px;
+}
+
+.car {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 250px;
+    background-color: #e3f2fd;
+}
+
+.car p {
+    margin: 5px 0;
+}
+
+input {
+    margin: 5px 0;
+    padding: 4px;
+}
+
+button {
+    margin-top: 5px;
+    padding: 4px 8px;
+    cursor: pointer;
+     border: 1px solid #90caf9;
+    background-color: #e3f2fd;
+}
+
+button:hover {
+    background-color: #bbdefb;
+}

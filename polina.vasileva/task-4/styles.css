@@ -1,0 +1,43 @@
+#studentsList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.student-card {
+    border-radius: 12px;
+    padding: 15px;
+
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    transition: all 0.2s ease;
+}
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+.student-card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+}
+.student-card ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.student-card li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.good {
+    color: green;
+}
+
+.bad {
+    color: red;
+}
+
+.error {
+    margin-top: 10px;
+    font-weight: bold;
+    color: red;
+}

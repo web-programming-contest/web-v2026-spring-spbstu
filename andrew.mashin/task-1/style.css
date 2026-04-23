@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+nav ul {
+    display: flex;
+    gap: 25px;
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    height: 100%;
+    align-items: center;
+}
+
+nav ul li {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 30px;
+}
+
+nav a {
+    height: 100%;
+    display: flex;
+    border-radius: 30px;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    transition: 0.3s ease;
+}
+
+/* Наведение на элементы навигации */
+
+
+nav li:hover > a {
+    padding: 0 20px;
+    color: white;
+    font-size: 20px;
+}
+
+nav li:hover:nth-child(1) {
+    background-color: #FF7672;
+}
+
+nav li:hover:nth-child(2) {
+    background-color: #FFA433;
+}
+
+nav li:hover:nth-child(3) {
+    background-color: #D48EBB;
+}
+
+nav li:hover:nth-child(4) {
+    background-color: #EB7C7D;
+}
+
+nav li:hover:nth-child(5) {
+    background-color: #FFA433;
+}
+
+nav li:hover:nth-child(6) {
+    background-color: #D48EBB;
+}
+
+@media (max-width: 768px) {
+    nav {
+        height: auto;
+    }
+
+    nav ul {
+        flex-direction: column;
+        width: 50%;
+        gap: 10px;
+    }
+
+    nav ul li {
+        display: flex;
+        width: 100%;
+        height: auto;
+    }
+
+    nav a {
+        -webkit-tap-highlight-color: transparent;
+        height: 50px;
+        width: 100%;
+        color: white;
+        justify-content: center;
+        text-align: center;
+    }
+
+    nav li:nth-child(1) {
+        background-color: #FF7672;
+    }
+
+    nav li:nth-child(2) {
+        background-color: #FFA433;
+    }
+
+    nav li:nth-child(3) {
+        background-color: #D48EBB;
+    }
+
+    nav li:nth-child(4) {
+        background-color: #EB7C7D;
+    }
+
+    nav li:nth-child(5) {
+        background-color: #FFA433;
+    }
+
+    nav li:nth-child(6) {
+        background-color: #D48EBB;
+    }
+}
