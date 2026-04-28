@@ -22,16 +22,16 @@ const Timer = () => {
   };
 
   useEffect(() => {
+    let timer;
     if (isRunning && seconds > 0) {
-      const timer = setTimeout(() => {
+      timer = setTimeout(() => {
         setSeconds(seconds - 1);
       }, 1000);
-      
-      return () => clearTimeout(timer);
     } else if (isRunning && seconds === 0) {
       alert('Готово!');
       setIsRunning(false);
     }
+    return () => clearTimeout(timer);
   }, [isRunning, seconds]);
 
   const formatTime = () => {
