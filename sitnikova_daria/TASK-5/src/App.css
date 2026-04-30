@@ -1,0 +1,576 @@
+/* ===== ОСНОВНЫЕ ПЕРЕМЕННЫЕ (CSS-кастомные свойства) ===== */
+:root {
+    /* Фон страницы */
+    --bg: #f5f0eb;
+    /* Фон карточек */
+    --card-bg: #ffffff;
+    /* Основной цвет текста */
+    --text: #2c2416;
+    /* Второстепенный цвет текста */
+    --text-secondary: #6b5e4a;
+    /* Акцентный цвет (фиолетовый) */
+    --accent: #5b4cc4;
+    /* Акцентный цвет при наведении */
+    --accent-hover: #4839a8;
+    /* Светлый акцентный фон */
+    --accent-light: #ede9f9;
+    /* Фон неактивной кнопки сортировки */
+    --button-bg: #f0ece6;
+    /* Цвет текста неактивной кнопки */
+    --button-text: #4a3f30;
+    /* Фон активной кнопки */
+    --button-active-bg: #5b4cc4;
+    /* Цвет текста активной кнопки */
+    --button-active-text: #ffffff;
+    /* Цвет закрашенной звезды */
+    --star-filled: #f0a830;
+    /* Цвет пустой звезды */
+    --star-empty: #d5cfc6;
+    /* Тени */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 8px 30px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+    /* Скругления */
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    /* Плавность анимаций */
+    --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Шрифты */
+    --font-serif: 'Georgia', 'Times New Roman', serif;
+    --font-sans: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* ===== СБРОС ОТСТУПОВ И БАЗОВАЯ НАСТРОЙКА ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== ТЕЛО СТРАНИЦЫ ===== */
+body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    /* Декоративные фоновые градиенты */
+    background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(180, 160, 210, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 80% 90%, rgba(200, 170, 140, 0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, rgba(220, 200, 170, 0.06) 0%, transparent 70%);
+    background-attachment: fixed;
+}
+
+/* ===== ШАПКА (header) ===== */
+.header {
+    background: var(--card-bg);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 20px 0;
+    position: sticky;            /* Прилипает к верху при прокрутке */
+    top: 0;
+    z-index: 100;               /* Чтобы перекрывать содержимое */
+    box-shadow: var(--shadow-sm);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.92); /* Полупрозрачный фон */
+}
+
+/* Внутренний контейнер шапки */
+.header-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;            /* На маленьких экранах элементы переносятся */
+    gap: 16px;
+}
+
+/* Логотип */
+.logo {
+    font-family: var(--font-serif);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+/* Иконка рядом с логотипом */
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--accent);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #fff;
+    flex-shrink: 0;
+}
+
+/* ===== ПАНЕЛЬ СОРТИРОВКИ ===== */
+.sort-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Текст "Сортировать по:" */
+.sort-label {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-right: 4px;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+
+/* Кнопки сортировки */
+.sort-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    letter-spacing: 0.2px;
+    border: 1.5px solid transparent;
+    border-radius: 50px;          /* Овальная кнопка */
+    cursor: pointer;
+    background: var(--button-bg);
+    color: var(--button-text);
+    transition: all var(--transition);
+    white-space: nowrap;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+}
+
+/* Кнопка при наведении */
+.sort-btn:hover {
+    background: #e6e0d7;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Кнопка при нажатии */
+.sort-btn:active {
+    transform: scale(0.96);
+    transition: 0.1s ease;
+}
+
+/* Активная кнопка (выбран тип сортировки) */
+.sort-btn.active {
+    background: var(--button-active-bg);
+    color: var(--button-active-text);
+    border-color: var(--button-active-bg);
+    box-shadow: 0 4px 14px rgba(91, 76, 196, 0.35);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+/* Активная кнопка при наведении */
+.sort-btn.active:hover {
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    box-shadow: 0 6px 20px rgba(91, 76, 196, 0.45);
+    transform: translateY(-2px);
+}
+
+/* Стрелка внутри кнопки */
+.sort-arrow {
+    display: inline-block;
+    font-size: 0.85rem;
+    transition: all var(--transition);
+    font-weight: 700;
+    min-width: 12px;              /* Чтобы кнопка не дёргалась */
+    text-align: center;
+}
+
+/* Анимация появления стрелки */
+.sort-btn.active .sort-arrow {
+    animation: arrowPop 0.3s ease-out;
+}
+
+/* Кейфреймы анимации */
+@keyframes arrowPop {
+    0% {
+        transform: translateY(-6px);
+        opacity: 0;
+    }
+    60% {
+        transform: translateY(2px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* ===== ОСНОВНОЕ СОДЕРЖИМОЕ ===== */
+.main {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 32px 28px 60px;
+}
+
+/* Строка с количеством книг */
+.books-count {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    letter-spacing: 0.2px;
+}
+
+/* ===== СЕТКА КАРТОЧЕК КНИГ ===== */
+.books-grid {
+    display: grid;
+    /* Адаптивная сетка: минимальная ширина колонок 250px */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+/* ===== КАРТОЧКА КНИГИ ===== */
+.book-card {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    position: relative;
+    /* Анимация появления карточки при загрузке */
+    animation: cardFadeIn 0.5s ease-out both;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Анимация появления */
+@keyframes cardFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Карточка при наведении */
+.book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* ===== ОБЛОЖКА КНИГИ (КОНТЕЙНЕР) ===== */
+.book-cover {
+    width: 100%;
+    aspect-ratio: 2 / 3;         /* Соотношение сторон как у книги */
+    background: #ddd;            /* Фон по умолчанию, если градиент не задан */
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;              /* Чтобы не сжималась */
+}
+
+/* Имитация корешка книги слева (поверх картинки) */
+.book-cover::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: 0 2px 2px 0;
+    z-index: 4;                  /* Поверх фолбека и картинки */
+    pointer-events: none;
+}
+
+/* Теневой градиент поверх обложки (для глубины) */
+.book-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.06) 0%,
+            transparent 30%,
+            rgba(0, 0, 0, 0.15) 100%);
+    z-index: 5;                  /* Самый верхний слой */
+    pointer-events: none;
+}
+
+/* ===== ИЗОБРАЖЕНИЕ ОБЛОЖКИ ===== */
+/* Заполняет контейнер, обрезается с сохранением пропорций */
+.book-cover-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           /* Обрезка под размер контейнера */
+    display: block;
+    z-index: 1;                  /* Под фолбеком и декоративными слоями */
+}
+
+/* ===== ФОЛБЕК (ТЕКСТОВОЕ НАЗВАНИЕ) ===== */
+/* Показывается, если нет изображения или оно не загрузилось */
+.book-cover-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;                  /* Над картинкой, но под псевдоэлементами */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 28px 20px;          /* Отступы для комфортного чтения */
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.35;
+    letter-spacing: 0.3px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    word-wrap: break-word;
+    hyphens: auto;
+    box-sizing: border-box;
+}
+
+/* ===== ИНФОРМАЦИЯ О КНИГЕ (ПОД ОБЛОЖКОЙ) ===== */
+.book-info {
+    padding: 18px 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-grow: 1;                /* Растягивается, чтобы кнопка была внизу */
+}
+
+/* Название книги */
+.book-title {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    letter-spacing: -0.1px;
+    /* Обрезаем слишком длинные названия */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Рейтинг (звёзды + число) */
+.book-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+/* Контейнер со звёздами */
+.stars {
+    display: flex;
+    gap: 1.5px;
+    color: var(--star-filled);
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Пустая звезда */
+.stars .star-empty {
+    color: var(--star-empty);
+}
+
+/* Полузакрашенная звезда (для рейтингов с половиной) */
+.star-half {
+    background: linear-gradient(to right, #f0a830 50%, #d5cfc6 50%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    /* Для браузеров, поддерживающих стандартное свойство */
+}
+
+/* Числовое значение рейтинга */
+.rating-value {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.85rem;
+    margin-left: 3px;
+}
+
+/* Описание книги */
+.book-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    /* Обрезаем длинные описания */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;                /* Занимает доступное пространство */
+}
+
+/* Цена */
+.book-price {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.3px;
+    margin-top: auto;            /* Прижимаем к низу */
+    padding-top: 6px;
+    font-family: var(--font-sans);
+}
+
+/* Знак рубля */
+.book-price .ruble {
+    font-weight: 400;
+    font-size: 0.9em;
+    margin-left: 2px;
+}
+
+/* Кнопка «В корзину» */
+.buy-btn {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 9px 18px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 600;
+    font-family: var(--font-sans);
+    letter-spacing: 0.3px;
+    transition: all var(--transition);
+    text-align: center;
+    width: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Кнопка при наведении */
+.buy-btn:hover {
+    background: var(--accent-hover);
+    box-shadow: 0 4px 14px rgba(91, 76, 196, 0.35);
+    transform: translateY(-1px);
+}
+
+/* Кнопка при нажатии */
+.buy-btn:active {
+    transform: scale(0.96);
+    transition: 0.1s ease;
+}
+
+/* Сообщение, когда книг нет (на случай пустого списка) */
+.no-results {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    grid-column: 1 / -1;         /* Растягиваем на всю ширину сетки */
+}
+
+/* ===== АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ И ТЕЛЕФОНОВ ===== */
+@media (max-width: 768px) {
+    .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 0 16px;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+    .logo-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 1.1rem;
+    }
+
+    /* Кнопки сортировки растягиваются на всю ширину */
+    .sort-controls {
+        width: 100%;
+        gap: 6px;
+    }
+    .sort-btn {
+        padding: 8px 14px;
+        font-size: 0.82rem;
+        gap: 4px;
+        flex: 1;
+        justify-content: center;
+        min-width: 0;
+    }
+    .sort-label {
+        width: 100%;
+        margin-bottom: 2px;
+    }
+
+    /* Сетка: меньше отступы, минимальная ширина колонки уменьшена */
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 14px;
+    }
+
+    /* Для фолбека уменьшаем отступы и шрифт */
+    .book-cover-fallback {
+        padding: 20px 12px;
+        font-size: 0.9rem;
+    }
+
+    .book-info {
+        padding: 12px 10px 14px;
+        gap: 6px;
+    }
+    .book-title { font-size: 0.9rem; }
+    .book-description {
+        font-size: 0.75rem;
+        -webkit-line-clamp: 2;    /* Показываем только две строки описания */
+    }
+    .book-price { font-size: 1.1rem; }
+    .buy-btn {
+        font-size: 0.78rem;
+        padding: 7px 12px;
+        margin-top: 8px;
+    }
+    .stars { font-size: 0.85rem; }
+}
+
+/* Для очень маленьких экранов (узкие телефоны) */
+@media (max-width: 400px) {
+    .books-grid {
+        grid-template-columns: 1fr 1fr;  /* Две колонки */
+        gap: 10px;
+    }
+
+    .book-cover-fallback {
+        padding: 16px 8px;
+        font-size: 0.78rem;
+    }
+
+    .book-info {
+        padding: 10px 8px 12px;
+    }
+    .book-title { font-size: 0.8rem; }
+    .book-price { font-size: 1rem; }
+    .sort-btn {
+        padding: 7px 10px;
+        font-size: 0.75rem;
+    }
+}
