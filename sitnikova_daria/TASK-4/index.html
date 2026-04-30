@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Библиотека</title>
+  <!-- Подключаем файл стилей -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <h1>Управление библиотеками</h1>
+
+    <!-- Блок управления библиотеками -->
+    <section class="manager-section">
+      <h2>Добавить новую библиотеку</h2>
+      <!-- Поле для имени новой библиотеки и кнопка добавления -->
+      <input type="text" id="libraryNameInput" placeholder="Название библиотеки">
+      <button id="addLibraryBtn">Добавить библиотеку</button>
+      <!-- Кнопка загрузки демо-данных -->
+      <button id="loadDemoBtn" class="demo-btn">Загрузить демо-данные</button>
+
+      <!-- Список существующих библиотек будет вставлен сюда через JS -->
+      <div id="librariesList" class="libraries-list"></div>
+
+    </section>
+
+    <!-- Блок управления книгами (отображается после выбора библиотеки) -->
+    <section id="bookSection" class="manager-section" style="display: none;">
+      <h2>Книги в библиотеке: <span id="selectedLibraryName"></span></h2>
+
+      <!-- Форма добавления книги -->
+      <div class="add-book-form">
+        <input type="text" id="titleInput" placeholder="Название книги" required>
+        <input type="text" id="authorInput" placeholder="Автор" required>
+        <input type="number" id="yearInput" placeholder="Год" required>
+        <input type="text" id="genreInput" placeholder="Жанр" required>
+        <button id="addBookBtn">Добавить книгу</button>
+      </div>
+
+      <!-- Контейнер для карточек книг -->
+      <div id="booksContainer" class="books-container"></div>
+    </section>
+
+     <!-- Блок интерактивного взаимодействия с функциями 4.2 -->
+    <section class="manager-section" id="analysisSection">
+      <h2>Анализ книг (4.2)</h2>
+
+      <!-- Группировка по жанрам -->
+      <div class="analysis-row">
+        <button id="groupByGenreBtn">Сгруппировать по жанру</button>
+        <div id="genreResult" class="analysis-result"></div>
+      </div>
+
+      <!-- Уникальные авторы -->
+      <div class="analysis-row">
+        <button id="uniqueAuthorsBtn">Показать уникальных авторов</button>
+        <div id="authorsResult" class="analysis-result"></div>
+      </div>
+
+      <!-- Группировка по годам -->
+      <div class="analysis-row">
+        <button id="groupByYearBtn">Сгруппировать по году издания</button>
+        <div id="yearGroupResult" class="analysis-result"></div>
+      </div>
+
+      <!-- Уникальные годы -->
+      <div class="analysis-row">
+        <button id="uniqueYearsBtn">Показать уникальные годы</button>
+        <div id="uniqueYearsResult" class="analysis-result"></div>
+      </div>
+
+      <!-- Поиск по автору -->
+      <div class="analysis-row">
+        <input type="text" id="authorSearchInput" placeholder="Введите автора">
+        <button id="searchByAuthorBtn">Найти книги автора</button>
+        <div id="authorBooksResult" class="analysis-result"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Подключаем скрипт с логикой (defer гарантирует, что DOM уже готов) -->
+  <script src="script.js" defer></script>
+</body>
+</html>
