@@ -1,0 +1,43 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f2f5;
+}
+
+.app {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+input {
+  padding: 8px;
+  margin: 5px;
+}
+
+button {
+  padding: 6px 10px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.note {
+  background: white;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.filters {
+  margin: 10px 0;
+}
+
+.clear-btn {
+  background: crimson;
+  color: white;
+  border: none;
+}
