@@ -1,9 +1,0 @@
-:root {
-  --box-width: 100%;
-  --box-head-h: 30px;
-}
-
-.box,.box-wrap {
-  background: var(--box-bg-color);
-}
-
