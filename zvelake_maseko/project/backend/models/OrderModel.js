@@ -6,24 +6,58 @@ export default class OrderModel extends Database{
         super();
     }
 
-    getAllOrders(){}
-
-    async getOrdersByCustomerId(customerId){
+    async getAllOrders(){
         try {
-            if(!this.redisClient.isOpen){
-                await this.redisClient.connect();
-            }
-            let orderNumbers = this.redisClient.lRange(`user:${customerId}:cart`, 0, -1);
-            const orders = [];
-            for(const orderNumber of orderNumbers){
-                let cart = this.redisClient.hGetAll(`cart:${orderNumber}`);
-                if(cart && cart.length > 0){ orders.push(cart); }
-            }
+            const result = await this.dbClient.query("SELECT DISTINCT id FROM orders");
+            const ids = result.rows;
+            const orders = await Promise.all(ids.map(id => this.getOrderByOrderId(id)));
             return orders;
         } catch(err) {
             console.error(err.message);
         }
         return [];
+    }
+
+    async getOrdersByCustomerId(customerId){
+        try {
+            console.log(`reading orders for ${customerId}`);
+            const result = await this.dbClient.query("SELECT DISTINCT order_id FROM orders WHERE customer_id = $1", [customerId]);
+            const orders = await Promise.all(result.rows.map(row => this.getOrderByOrderId(row.order_id)));
+            return orders;
+        } catch(err) {
+            console.error(err.message);
+        }
+        return [];
+    }
+
+    async getOrderByOrderId(orderId){
+        try{
+            const result = await this.dbClient.query("SELECT * FROM orders WHERE order_id = $1", [orderId]);
+            const orders = result.rows;
+            const productIds = Array.from(new Set(orders.map(order => order.product_id)));
+            const model = new ProductModel();
+            const items = await Promise.all(productIds.map(async (id, indx) => {
+                const product = await model.getProductById(id);
+                const amount = Number(orders[indx].amount);
+                const quantity = Math.floor(amount / Number(product.price));
+                return {
+                    product: product,
+                    quantity: quantity,
+                    priceAtPurchase: amount
+                };
+            }));
+            return {
+                id: orders[0].order_id,
+                date: orders[0].created_at,
+                items: items,
+                totalAmount: items.reduce((curr, item)=> curr + Number(item.priceAtPurchase), 0),
+                status: orders[0].status
+            };
+        } catch(err){
+            console.log(err.message);
+        }
+
+        return {};
     }
 
     async createCart(customerId, productId, quantity){
@@ -141,7 +175,7 @@ export default class OrderModel extends Database{
         return {};
     }
 
-    async createOrder(cartId, customerId){
+    async createOrder(cartId, customerId, city, street, house, apartment, phone, postal_code){
         try{
             if(!this.redisClient.isOpen){
                 await this.redisClient.connect();
@@ -157,29 +191,45 @@ export default class OrderModel extends Database{
                     const quantity = await this.redisClient.get(`user:${customerId}:cart:${cartId}:${productId}`);
                     const product = await (new ProductModel()).getProductById(productId);
                     const amount = Number(product.price) * Number(quantity);
-
-                    ordersData.push([order_id, customerId, productId, amount]);
+                    
+                    ordersData.push({
+                        order_id,
+                        customer_id: customerId,
+                        product_id: productId,
+                        amount,
+                        city,
+                        street,
+                        house,
+                        apartment,
+                        phone_number: phone,
+                        postal_code
+                    });
                 }
             }
+
             if(ordersData.length > 0){
+                const columns = Object.keys(ordersData[0]);
                 const placeholders = ordersData.map((_, i) => 
-                    `($${i*4+1}, $${i*4+2}, $${i*4+3}, $${i*4+4})`
+                    `(${columns.map((_, j) => `$${i * columns.length + j + 1}`).join(', ')})`
                 ).join(', ');
-                let sql = `INSERT INTO orders (order_id, customer_id, product_id, amount) VALUES ${placeholders}`;
-                await this.dbClient.query(sql, ordersData.flat());
+                
+                const sql = `INSERT INTO orders (${columns.join(', ')}) VALUES ${placeholders}`;
+                const values = ordersData.flatMap(row => columns.map(col => row[col]));
+                
+                await this.dbClient.query(sql, values);
             }
 
             await Promise.all(products.map(key => this.redisClient.del(key)));
-            return true;
+            return order_id;
         } catch(err){
             console.error(err.message);
         }
-        return false;
+        return undefined;
     }
 
     async changeOrderStatus(orderId, newStatus){
         try {
-            this.dbClient.query("UPDATE orders SET status = $1 WHERE id = $2", [newStatus, orderId]);
+            this.dbClient.query("UPDATE orders SET status = $1 WHERE order_id = $2", [newStatus, orderId]);
             return true;
         } catch(err) {
             console.error(err.message);

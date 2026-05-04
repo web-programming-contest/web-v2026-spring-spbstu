@@ -43,12 +43,13 @@ export default class UserModel extends Database{
             }
             
             let result = await this.dbClient.query("SELECT * FROM users WHERE id = $1", [id]);
-
+            await this.redisClient.hSet(`user:${id}`, result.rows[0]);
             return result.rows[0];
         } catch(err){
             console.log(err);
             return {};
         }
+        return {};
     }
 
     async getUserDetails(userName, email){

@@ -1,6 +1,7 @@
 import { passwordHash } from "../utils/utils.js";
 import Database from "./Database.js";
 import UserModel from "./UserModel.js";
+import OrderModel from "./OrderModel.js";
 
 export default class AdminModel extends Database{
     constructor(){
@@ -17,6 +18,9 @@ export default class AdminModel extends Database{
             let session = await this.redisClient.hGetAll(`session:*:${existing.id}`);
 
             if(session && Object.keys(session).length > 0){
+                if(existing.orders){
+                    session['orders'] = existing.orders;
+                }
                 return {
                     success: true,
                     userData: session
@@ -24,11 +28,14 @@ export default class AdminModel extends Database{
             }
             if(Object.keys(existing).length > 0){
                 const sessionId = crypto.randomUUID();
-                const stringified = {};
-                for(const [k, v] of Object.entries(existing)){
-                    if(typeof v === 'object') continue;
-                    stringified[k] = v.toString();
+                const stringified = {
+                    id: existing.id.toString(),
+                    full_name: existing.full_name.toString(),
+                };
+                if(existing.avatar_url){
+                    stringified['avatar_url'] = existing.avatar_url.toString();
                 }
+                
                 await this.redisClient.hSet(`session:${sessionId}:${existing.id}`, stringified);
                 return {
                     success: true,

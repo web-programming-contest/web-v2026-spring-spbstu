@@ -54,9 +54,7 @@ export default class ProductModel extends Database{
                 return;
             }
             
-            //console.log(`Read ${result.rows.length} items from DB`);
             for (const row of result.rows) {
-                // Получаем категорию
                 const category = await this.dbClient.query(
                     "SELECT * FROM categories WHERE id = $1", 
                     [row.category_id]
@@ -135,8 +133,12 @@ export default class ProductModel extends Database{
             if(cached && cached.length > 0){
                 return cached;
             }
+            const columns = "id,name,description,price,image_url,in_stock,rating,specs";
+            const productData = {};
 
-            const stored = await this.dbClient.query("SELECT * FROM products WHERE id = $1", [productId]);
+            const stored = await this.dbClient.query(`SELECT (${columns},category_id) FROM products WHERE id = $1`, [productId]);
+            const category = await this.dbClient.query(`SELECT id,name FROM categories WHERE id = $1`, [stored.rows[0].category_id]);
+            const reviews = await this.dbClient.query("SELECT * FROM reviews WHERE product_id = $1", [productId]);
             return stored.rows[0];
         } catch (err) {
             console.log(err)
