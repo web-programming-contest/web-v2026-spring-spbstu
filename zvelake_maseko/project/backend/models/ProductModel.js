@@ -60,7 +60,6 @@ export default class ProductModel extends Database{
                     [row.category_id]
                 );
                 
-                // Получаем отзывы
                 const reviews = await this.dbClient.query(
                     "SELECT * FROM product_reviews WHERE product_id = $1", 
                     [row.id]
@@ -69,7 +68,6 @@ export default class ProductModel extends Database{
                 row.reviews = reviews.rows;
                 row.category = category.rows[0].name || 'Unknown';
                 
-                // Добавляем категорию и отзывы к объекту продукта
                 const productData = {
                     id: row.id.toString(),
                     name: row.name || '',
@@ -82,22 +80,15 @@ export default class ProductModel extends Database{
                     specs: row.specs?.toString() || ''
                 };
                 
-                // Сохраняем продукт в Redis как Hash
                 await this.redisClient.hSet(`product:${row.id}`, productData);
-                //await this.redisClient.setExpire(`product:${row.id}`, expireDate.getTime() / 1000);
                 
-                // Сохраняем категорию, если она существует
                 if (category.rows[0]) {
                     await this.redisClient.hSet(`category:${row.category_id}`, {
                         id: category.rows[0].id.toString(),
                         name: category.rows[0].name || ''
                     });
-                    //await this.rediClient.setExpire(`category:${row.category_id}`, expireDate.getTime() / 1000);
                 }
                 
-                //console.log(`Found ${reviews.rows.length} reviews for product ${row.id}`);
-                
-                // Сохраняем отзывы и добавляем в список
                 for (const review of reviews.rows) {
                     const reviewData = {
                         id: review.id.toString(),
@@ -109,9 +100,6 @@ export default class ProductModel extends Database{
                     
                     await this.redisClient.hSet(`review:${review.id}`, reviewData);
                     await this.redisClient.lPush(`product:${row.id}:reviews`, review.id.toString());
-                    
-                    //await this.redisClient.setExpire(`review:${review.id}`, expireDate.getTime() / 1000);
-                    //await this.redisClient.setExpire(`product:${row.id}:reviews`, expireDate.getTime() / 1000);
                 }
             }
             
@@ -134,12 +122,15 @@ export default class ProductModel extends Database{
                 return cached;
             }
             const columns = "id,name,description,price,image_url,in_stock,rating,specs";
-            const productData = {};
 
-            const stored = await this.dbClient.query(`SELECT (${columns},category_id) FROM products WHERE id = $1`, [productId]);
-            const category = await this.dbClient.query(`SELECT id,name FROM categories WHERE id = $1`, [stored.rows[0].category_id]);
+            const stored = await this.dbClient.query(`SELECT ${columns},category_id FROM products WHERE id = $1`, [productId]);
+            const product = stored.rows[0];
+            
+            const category = await this.dbClient.query(`SELECT id,name FROM categories WHERE id = $1`, [product.category_id]);
             const reviews = await this.dbClient.query("SELECT * FROM reviews WHERE product_id = $1", [productId]);
-            return stored.rows[0];
+            product['reviews'] = reviews.rows;
+            product['category'] = category.rows[0].name;
+            return product;
         } catch (err) {
             console.log(err)
         }
