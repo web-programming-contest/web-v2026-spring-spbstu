@@ -13,7 +13,7 @@ const __dirname = dirname(__filename);
 
 async function dataApi(req, res){
     let model;
-    let result;
+    let result = [];
     switch (req.params.item){
         case "products":
             model = new ProductModel();
@@ -72,6 +72,22 @@ async function dataApi(req, res){
                 }
             });
             break;
+        case "orders":
+            model = new OrderModel();
+            if(req.query.cid){
+                result = await model.getOrdersByCustomerId(req.query.cid);
+            } else {
+                result = await model.getAllOrders();
+            }
+            res.json({
+                success: true,
+                date: (new Date()).toISOString(),
+                data: {
+                    count: result.length,
+                    orders: result
+                }
+            });
+            break;
     }
 }
 
@@ -124,9 +140,15 @@ async function controlApi(req, res){
 
     } else if(req.params.item === 'order'){
         if(req.params.id){
+            console.log(`changing order ${req.params.id}`);
             if(action === 'update'){
                 if(req.query.k === 'status'){
+                    console.log(`updating order status: ${req.query.v}`);
                     result = await model.changeOrderStatus(req.params.id, req.query.v);
+                    res.json({
+                        success: result,
+                        message: result ? 'order status updated successfully' : 'Failed to update order status'
+                    });
                 }
             } else if(action === 'cancel'){
                 result = await model.cancelOrder(req.params.id, req.body.customerId);
@@ -138,7 +160,7 @@ async function controlApi(req, res){
         } else {
             if(action === 'create'){
                 console.log(`creating order on cart ${req.body.cartId} for user ${req.body.customerId}`);
-                let orderId = await model.createOrder(req.body.cartId, req.body.customerId);
+                let orderId = await model.createOrder(req.body.cartId, req.body.customerId, req.body.city, req.body.street, req.body.house, req.body.apartment, req.body.phone, req.body.postal_code);
                 if(orderId){
                     res.json({
                         success: true,
