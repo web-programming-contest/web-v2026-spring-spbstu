@@ -1,0 +1,70 @@
+:root {
+  --card-bg: white;
+  --box-bg: white;
+  --box-border: #a19696;
+  --box-shadow: 0px 0px 5px #c8bebe;
+  --box-pad-h: 10px;
+  --box-pad-v: var(--box-pad-h);
+}
+
+.box {
+  background: var(--box-bg);
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+  padding: var(--box-pad-v) var(--box-pad-h);
+}
+
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --func-item-sz: 50px;
+  --func-item-border-sz: 40px;
+}
+
+.func-item {
+  width: var(--func-item-sz);
+  height: var(--func-item-sz);
+  transition: transform 0.3s linear;
+  transform: scale(1);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  box-shadow: 0px 0px 5px grey;
+  border-radius: 10px;
+}
+.func-item:hover {
+  transform: scale(1.015);
+}
+.func-item .border {
+  position: absolute;
+  width: var(--func-item-border-sz);
+  height: var(--func-item-border-sz);
+  border-radius: 50%;
+  border: 3px solid black;
+}
+.func-item .icon-box {
+  text-align: center;
+  font-size: inherit;
+}
+
+.grid {
+  display: grid;
+}
+.grid.col-1 {
+  grid-template-columns: 1fr;
+}
+
+.functions.grid {
+  --box-pad-v: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(var(--func-item-sz), 1fr));
+  gap: 10px;
+  width: 60%;
+}

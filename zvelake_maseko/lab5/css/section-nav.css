@@ -1,0 +1,32 @@
+:root {
+  --nav-primary: #1a74cd;
+  --border: #c6bfbf;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+}
+
+.section-nav {
+  padding: 0px 10px;
+}
+.section-nav-links, .section-nav-tabs {
+  display: flex;
+  gap: 10px;
+  padding: 0px 10px;
+  margin: 0px;
+  overflow-x: auto;
+}
+.section-nav-links__item {
+  padding: 5px;
+  border-radius: 8px;
+  background: white;
+  transition: background 0.3s linear;
+  font-weight: bold;
+  border: 1px solid var(--border);
+}
+.section-nav-links__item:hover, .section-nav-links__item.active {
+  background: var(--nav-primary);
+  --text: white;
+}

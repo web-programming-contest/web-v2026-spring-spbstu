@@ -1,0 +1,41 @@
+:root {
+  --ok-color: #008000;
+  --err-color: #ff0000;
+  --ok-bg: #15c11560;
+  --err-bg: #d43c3c;
+  --warn-bg: rgba(255, 255, 0, 0.532);
+  --warn-color: yellow;
+}
+
+.alert {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  transition: transform 0.3s linear;
+  padding: 5px;
+  border-radius: 10px;
+}
+.alert:not(.show) {
+  transform: translateX(2000%);
+}
+.alert-message {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+}
+.alert.success {
+  background: var(--ok-bg);
+  color: var(--ok-color);
+}
+.alert.error {
+  background: var(--err-bg);
+  color: var(--err-color);
+}
+.alert.warn {
+  background: var(--warn-bg);
+  color: var(--warn-color);
+}
+.alert.show {
+  transform: translateX(0%);
+}
